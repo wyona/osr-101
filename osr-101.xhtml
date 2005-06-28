@@ -7,8 +7,11 @@
 </head>
 <body>
 <h1>Content Management User Interface API</h1>
-<dt>Version 0.1.0</dt>
-
+<h2>Open Specification Request 101</h2>
+<dt>Version: 0.1.0</dt>
+<br/>
+<dt>Date: 28 June 2005</dt>
+<br/>
 <dt>Editors:</dt>
 <dd>
 Michael Wechner <a href="mailto:michael.wechner@wyona.com">michael.wechner@wyona.com</a>
@@ -23,6 +26,7 @@ Christian Stocker <a href="mailto:chregu@bitflux.ch">chregu@bitflux.ch</a>
 
 <h2>Table of contents</h2>
 <ol>
+  <li>Introspection</li>
   <li>Menus</li>
   <li>Editing
     <ol>
@@ -49,5 +53,22 @@ Christian Stocker <a href="mailto:chregu@bitflux.ch">chregu@bitflux.ch</a>
 <p>
 ...
 </p>
+
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<cmui>
+  <response type="edit-new">
+  <edit-new>
+    <templates>
+      <template name="Letter" src="http://foo.bar/letter.xml"/>
+      <template name="Article" src="http://foo.bar/article.xml"/>
+    </templates>
+  </edit-new>
+  </response>
+</cmui>
+]]>
+</pre>
 </body>
 </html>
