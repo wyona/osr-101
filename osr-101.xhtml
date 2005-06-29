@@ -12,7 +12,7 @@
 <h2>Open Specification Request 101</h2>
 <dt>Version: 0.1.0</dt>
 <br/>
-<dt>Date: 28 June 2005</dt>
+<dt>Date: 30 June 2005</dt>
 <br/>
 <dt>Editors:</dt>
 <dd>
@@ -33,10 +33,10 @@ Christian Stocker <a href="mailto:chregu@bitflux.ch">chregu@bitflux.ch</a>
   <li>Editing
     <ol>
       <li><a href="#editing-new">New</a></li>
-      <li>Open</li>
-      <li>Save</li>
+      <li><a href="#editing-open">Open</a></li>
+      <li><a href="#editing-save">Save</a></li>
       <li>Save As</li>
-      <li>Exit</li>
+      <li><a href="#editing-exit">Exit</a></li>
       <li>Close</li>
       <li>Close All</li>
       <li>Save All</li>
@@ -53,9 +53,17 @@ Christian Stocker <a href="mailto:chregu@bitflux.ch">chregu@bitflux.ch</a>
 <a name="editing-new"/>
 <h2>New</h2>
 <p>
+The action "New" allows to create a new document by selecting a template.
+The CMS/server needs to provide a template listing to the client such that the client can provide a dialog in order to let the user select a template.
+The "New" action entails a "Save As" action in order to allow specifying a new document name when actually saving.
+</p>
+
+<h3>Request</h3>
+<p>
 ...
 </p>
 
+<h3>Response</h3>
 <pre>
 <![CDATA[
 <?xml version="1.0"?>
@@ -72,5 +80,61 @@ Christian Stocker <a href="mailto:chregu@bitflux.ch">chregu@bitflux.ch</a>
 </cmui>
 ]]>
 </pre>
+
+<a name="editing-open"/>
+<h2>Open</h2>
+<p>
+The action "Open" allows to open an existing document.
+If the client has already a document loaded and a new document will be opened,
+then the loaded document might be closed automatically (please also see "Close" and "Save All").
+</p>
+
+<p>
+The CMS needs to provide a directory listing to the client such that the client can provide a dialog
+in order to let the user select a document.
+</p>
+
+<p>
+When a user attempts to open a document, then the server needs to check if the document
+might have been locked already respectively opened by another user.
+If it has already been locked respectively opened by another user, then the CMS needs to
+communicate to the client that this document is currently locked and maybe
+provide a functionality to break the lock.
+Otherwise the document needs to be locked on the server side if the document is being opened.
+</p>
+
+<p>
+The document path needs to be kept within the client in order to allow saving to the original document on the server side.
+</p>
+
+<a name="editing-save"/>
+<h2>Save</h2>
+<p>
+The "Save" action allows to save a document to the path which was selected when loading the document with the "Open" action.
+</p>
+
+<p>
+It might be assumed that no temporary copies are being used on the server side, but rather the original document is being overwritten. This might lead to the confusing situation, that changes on the server side can been seen, which are only temporarily.
+</p>
+
+<a name="editing-exit"/>
+<h2>Exit</h2>
+<p>
+The "Exit" action allows to quit the client. If the user clicks on the "Exit" menu item,
+then the client opens a dialog, where the user can select the following buttons/options:
+</p>
+
+<ul>
+  <li>Save</li>
+  <li>Save As</li>
+  <li>Don't save (Exit but do not save)</li>
+  <li>Cancel (Do not exit)</li>
+</ul>
+  
+<p>
+If a lock has been created during opening, then this locks needs to be removed at this point.
+In case the CMS would support breaking the lock by another user, then the CMS should communicate
+a broken lock to the client.
+</p>
 </body>
 </html>
