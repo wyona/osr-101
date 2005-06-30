@@ -25,12 +25,21 @@ Zhiwu Xie <a href="mailto:zxie@ece.unm.edu?subject=OSR-101">zxie@ece.unm.edu</a>
 <hr/>
 <h2>Abstract</h2>
 <p>
-...
+Basically every Content Management System is implementing the same functionality from
+a user interface point of view.  Such basic functionalities are for instance creating a new document or opening
+an existing document for editing. More advanced functionalities are for instance changing workflow states and
+accessing revisons.
+</p>
+
+<p>
+The goal of OSR-101 is to define a generic interface between a CMS client (e.g. OpenOffice.org, BXE, ...)
+and an actual CMS on the server side (e.g. Silva, Bitflux CMS, Apache Lenya, ...) to free the user interface
+from the server side implementation.
 </p>
 
 <h2>Table of contents</h2>
 <ol>
-  <li>Introspection</li>
+  <li><a href="#introspection">Introspection</a></li>
   <li>Menus</li>
   <li>Editing
     <ol>
@@ -51,6 +60,13 @@ Zhiwu Xie <a href="mailto:zxie@ece.unm.edu?subject=OSR-101">zxie@ece.unm.edu</a>
 </ol>
 
 <hr/>
+
+<a name="introspection"/>
+<h2>Introspection</h2>
+<p>
+The communication between the client and server can be initialized by introspection.
+This also allows the server to tell the client of it's capabilities (e.g. level 1, 2, 3 compliance).
+</p>
 
 <a name="editing-new"/>
 <h2>New</h2>
