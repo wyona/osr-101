@@ -12,7 +12,7 @@
 <h2>Open Specification Request 101</h2>
 <dt>Version: 0.1.0</dt>
 <br/>
-<dt>Date: 30 June 2005</dt>
+<dt>Date: 5 July 2005</dt>
 <br/>
 <dt>Editors:</dt>
 <dd>
@@ -51,6 +51,7 @@ from the server side implementation.
       <li>Close</li>
       <li>Close All</li>
       <li>Save All</li>
+      <li><a href="#editing-link-lookup">Hypertext Link Lookup</a></li>
     </ol>
   </li>
   <li>Workflow</li>
@@ -154,5 +155,56 @@ If a lock has been created during opening, then this locks needs to be removed a
 In case the CMS would support breaking the lock by another user, then the CMS should communicate
 a broken lock to the client.
 </p>
+
+<a name="editing-link-lookup"/>
+<h2>Hypertext Link Lookup</h2>
+<p>
+The hypertext link lookup functionality allows to add a hypertext link
+to a text. One selects part of a text and clicks on the link icon which is triggering
+a request to the server(s) in order to provide the content resp. interface for a link
+selecting dialog. One could imagine the following types of dialogs:
+</p>
+
+<ul>
+  <li>Text Field to paste a link</li>
+  <li>Search Field</li>
+  <li>Simple resource list</li>
+  <li>Hierarchical resource listing (tree-view)</li>
+  <li>Topic Map with resource occurences (graph-view)</li>
+</ul>
+
+<h3>Response: Search Field</h3>
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<cmui>
+  <response type="edit-link">
+  <edit-link>
+    <search src="http://foo.bar/search"/>
+  </edit-link>
+  </response>
+</cmui>
+]]>
+</pre>
+
+<h3>Response: Simple List</h3>
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<cmui>
+  <response type="edit-link">
+  <edit-link>
+    <simple-list>
+      <link name="Archibald Alexander Leach" src="http://foo.bar/leach.pdf"/>
+      <link name="Cary Grant" src="http://foor.bar/cary_grant.html"/>
+    </simple-list>
+  </edit-link>
+  </response>
+</cmui>
+]]>
+</pre>
+
 </body>
 </html>
