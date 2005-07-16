@@ -67,7 +67,7 @@ from the server side implementation.
 <a name="webdav"/>
 <h2>WebDAV</h2>
 <p>
-How WebDAV could be leveraged ... Also see the Universal Content Broker Project (http://ucb.openoffice.org/)
+How WebDAV could be leveraged ... Also see the Universal Content Broker Project (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>)
 </p>
 
 <a name="introspection"/>
@@ -76,6 +76,18 @@ How WebDAV could be leveraged ... Also see the Universal Content Broker Project 
 The communication between the client and server can be initialized by introspection.
 This also allows the server to tell the client of it's capabilities (e.g. level 1, 2, 3 compliance).
 </p>
+
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<html>
+  <head>
+    <link rel="cms.client" type="application/x.osr+xml" href="introspection.xml" title="OSR-101"/>
+  </head>
+</html>
+]]>
+</pre>
 
 <a name="editing-new"/>
 <h2>New</h2>
