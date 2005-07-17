@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<xul>
+  <vbox id="root">
+   <groupbox>
+     <caption label="Search"/>
+     <textbox id="search"/>
+   </groupbox> 
+   <hbox>
+     <button label="Search"  command="search" style="width: 100px"/>
+     <button label="Clear"  command="clear" style="width: 100px"/>
+   </hbox>
+   <groupbox>
+     <caption label="Results"/>
+     <textarea id="results" rows="5"/>
+   </groupbox> 
+  </vbox> 
+</xul>
