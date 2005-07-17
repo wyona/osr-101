@@ -1,6 +1,22 @@
 
-Swing, XML and XUL
-------------------
+ Requirements
+ ------------
+
+ - JDK 1.4.X
+ - Ant 1.6.X
+
+
+ Getting Started
+ ---------------
+
+ - ant jar
+ - Luxor Version: sh run-luxor.sh
+
+ - Swing Version: java -jar build/lib/vanes-client.jar
+
+
+ Swing, XML and XUL
+ ------------------
 
  - http://xul.sourceforge.net/ (Open XUL Alliance)
 

@@ -5,19 +5,19 @@ import javax.swing.*;
 /**
  *
  */
-public class Vanes {
+public class VanesSwing {
 
     /**
      *
      */
     public static void main(String[] args) {
-        new Vanes(null);
+        new VanesSwing(null);
     }
 
     /**
      *
      */
-    public Vanes(String url) {
+    public VanesSwing(String url) {
         System.out.println("Starting vanese ...");
 
         JFrame.setDefaultLookAndFeelDecorated(true);

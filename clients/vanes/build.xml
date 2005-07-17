@@ -16,6 +16,7 @@
     <path id="classpath.compile">
       <fileset dir="lib">
         <include name="*.jar"/>
+        <include name="luxor/*.jar"/>
       </fileset>
     </path>
 
@@ -46,7 +47,7 @@
 <!--
         <attribute name="class-path" value="${classpath.jar}"/>
 -->
-        <attribute name="main-class" value="org.wyona.vanes.client.Vanes"/>
+        <attribute name="main-class" value="org.wyona.vanes.client.VanesSwing"/>
       </manifest>
     </jar>
   </target>
