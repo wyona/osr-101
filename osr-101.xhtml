@@ -12,7 +12,7 @@
 <h2>Open Specification Request 101</h2>
 <dt>Version: 0.1.0</dt>
 <br/>
-<dt>Date: 17 July 2005</dt>
+<dt>Date: 20 July 2005</dt>
 <br/>
 <dt>Editors:</dt>
 <dd>
@@ -77,7 +77,7 @@ from the server side implementation.
 <a name="webdav"/>
 <h2>WebDAV</h2>
 <p>
-How WebDAV could be leveraged ... Also see the Universal Content Broker Project (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>)
+How WebDAV could be leveraged ... Also see the Universal Content Broker Project (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>) ... also see the <a href="http://webservices.xml.com/lpt/a/ws/2003/08/05/salz.html">Atom API</a>.
 </p>
 
 <a name="introspection"/>
@@ -85,6 +85,10 @@ How WebDAV could be leveraged ... Also see the Universal Content Broker Project 
 <p>
 The communication between the client and server can be initialized by introspection.
 This also allows the server to tell the client of it's capabilities (e.g. level 1, 2, 3 compliance).
+</p>
+
+<p>
+Finding the introspection file
 </p>
 
 <pre>
@@ -96,6 +100,32 @@ This also allows the server to tell the client of it's capabilities (e.g. level 
     <link rel="cms.client" type="application/x.osr+xml" href="introspection.xml" title="OSR-101"/>
   </head>
 </html>
+]]>
+</pre>
+
+<p>
+An example of an introspection file
+</p>
+
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<introspection xmlns="http://www.wyona.org/osr-101/1.0">
+<search>
+  <uri="http://search.msn.com/results.aspx?format=rss&amp;FORM=ZZRE"/>
+  <query-string-parameter name="q"/>
+  <response type="rss"/>
+</search>
+<search>
+  <uri="http://www.google.com/search?hl=en&amp;btnG=Google+Search"/>
+  <query-string-parameter name="q"/>
+  <response type="html"/>
+</search>
+<new>
+  <templates uri="http://foo.bar/templates"/>
+</new>
+</introspection>
 ]]>
 </pre>
 
