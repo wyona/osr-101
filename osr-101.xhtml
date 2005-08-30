@@ -25,10 +25,11 @@ Zhiwu Xie <a href="mailto:zxie@ece.unm.edu?subject=OSR-101">zxie@ece.unm.edu</a>
 <hr/>
 <h2>Abstract</h2>
 <p>
-Basically every Content Management System is implementing the same functionality from
-a user interface point of view.  Such basic functionalities are for instance creating a new document or opening
-an existing document for editing. More advanced functionalities are for instance changing workflow states and
-accessing revisons.
+Basically every Content Management System is implementing the same 
+functionality from a user interface point of view. Such basic functionalities 
+are for instance creating a new document or opening an existing document for 
+editing. More advanced functionalities are for instance changing workflow 
+states and accessing revisons.
 </p>
 
 <p>
@@ -77,22 +78,50 @@ from the server side implementation.
 <a name="related"/>
 <h2>Related: WebDAV, Atom Protocol, ...</h2>
 <p>
-How WebDAV could be leveraged ... Also see the Universal Content Broker Project (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>) ... also see the <a href="http://bitworking.org/projects/atom/">Atom Protocol</a> (or <a href="http://webservices.xml.com/lpt/a/ws/2003/08/05/salz.html">Atom API</a>).
+  <a href="http://www.webdav.org">WebDAV</a> may well form the basis for 
+  client-server communication in a typical OSR-101 setup. DAV provides a
+  basic (although somewhat low-level) API for managing content on servers,
+  and is already available on most modern webservers. Where required, the HTTP
+  protocol can be extended even further to provide higher level functionality,
+  or functionality that is simply not provided by DAV (of course another 
+  implementation is also possible).
+</p>
+<p>
+  Some of the features described by OSR-101 are already defined by some DAV-
+  related consortium as an extension to DAV, and are either accepted as a
+  standard or in draft. Of these proposals and standards, DeltaV (which
+  provides a versioning API), DASL (provides a searching API) and the DAV ACL
+  (Access Control List) extensions are probably the most useful ones. However,
+  the status of the extensions varies from accepted and implemented (DeltaV)
+  to draft revision 0 (ACL extension) and it may therefore be that we can not
+  implement the API as intended. A decision will need to be made about whether
+  OSR-1 is going to build on those extensions at all, and if so, what to do
+  with grey areas in the proposals/standards.
+<p>
+  Also see the Universal Content Broker Project 
+  (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>) ... 
+  also see the 
+  <a href="http://bitworking.org/projects/atom/">Atom Protocol</a> (or 
+  <a href="http://webservices.xml.com/lpt/a/ws/2003/08/05/salz.html">Atom 
+  API</a>).
 </p>
 
 <p>
-It might also be interesting to follow the development of the OpenUsability project <a href="http://openusability.org/projects/cms-uig/">User Interface Guidelines for Content Management Systems</a>.
+  It might also be interesting to follow the development of the OpenUsability 
+  project <a href="http://openusability.org/projects/cms-uig/">User Interface 
+  Guidelines for Content Management Systems</a>.
 </p>
 
 <a name="introspection"/>
 <h2>Introspection</h2>
 <p>
-The communication between the client and server can be initialized by introspection.
-This also allows the server to tell the client of it's capabilities (e.g. level 1, 2, 3 compliance).
+  The communication between the client and server can be initialized by 
+  introspection. This also allows the server to tell the client of it's 
+  capabilities (e.g. level 1, 2, 3 compliance).
 </p>
 
 <p>
-Finding the introspection file
+  Finding the introspection file
 </p>
 
 <pre>
@@ -108,7 +137,7 @@ Finding the introspection file
 </pre>
 
 <p>
-An example of an introspection file
+  An example of an introspection file
 </p>
 
 <pre>
@@ -136,14 +165,16 @@ An example of an introspection file
 <a name="editing-new"/>
 <h2>New</h2>
 <p>
-The action "New" allows to create a new document by selecting a template.
-The CMS/server needs to provide a template listing to the client such that the client can provide a dialog in order to let the user select a template.
-The "New" action entails a "Save As" action in order to allow specifying a new document name when actually saving.
+  The action "New" allows to create a new document by selecting a template.
+  The CMS/server needs to provide a template listing to the client such that
+  the client can provide a dialog in order to let the user select a template.
+  The "New" action entails a "Save As" action in order to allow specifying a
+  new document name when actually saving.
 </p>
 
 <h3>Request</h3>
 <p>
-...
+  ...
 </p>
 
 <h3>Response</h3>
@@ -167,44 +198,52 @@ The "New" action entails a "Save As" action in order to allow specifying a new d
 <a name="editing-open"/>
 <h2>Open</h2>
 <p>
-The action "Open" allows to open an existing document.
-If the client has already a document loaded and a new document will be opened,
-then the loaded document might be closed automatically (please also see "Close" and "Save All").
+  The action "Open" allows to open an existing document.
+  If the client has already a document loaded and a new document will be 
+  opened, then the loaded document might be closed automatically (please also 
+  see "Close" and "Save All").
 </p>
 
 <p>
-The CMS needs to provide a directory listing to the client such that the client can provide a dialog
-in order to let the user select a document.
+  The CMS needs to provide a directory listing to the client such that the 
+  client can provide a dialog in order to let the user select a document.
 </p>
 
 <p>
-When a user attempts to open a document, then the server needs to check if the document
-might have been locked already respectively opened by another user.
-If it has already been locked respectively opened by another user, then the CMS needs to
-communicate to the client that this document is currently locked and maybe
-provide a functionality to break the lock.
-Otherwise the document needs to be locked on the server side if the document is being opened.
+  When a user attempts to open a document, then the server needs to check if
+  the document might have been locked already respectively opened by another
+  user.  If it has already been locked respectively opened by another user,
+  then the CMS needs to communicate to the client that this document is
+  currently locked and maybe provide a functionality to break the lock.
+  Otherwise the document needs to be locked on the server side if the document
+  is being opened.
 </p>
 
 <p>
-The document path needs to be kept within the client in order to allow saving to the original document on the server side.
+  The document path needs to be kept within the client in order to allow 
+  saving to the original document on the server side.
 </p>
 
 <a name="editing-save"/>
 <h2>Save</h2>
 <p>
-The "Save" action allows to save a document to the path which was selected when loading the document with the "Open" action.
+  The "Save" action allows to save a document to the path which was selected 
+  when loading the document with the "Open" action.
 </p>
 
 <p>
-It might be assumed that no temporary copies are being used on the server side, but rather the original document is being overwritten. This might lead to the confusing situation, that changes on the server side can been seen, which are only temporarily.
+  It might be assumed that no temporary copies are being used on the server
+  side, but rather the original document is being overwritten. This might lead
+  to the confusing situation, that changes on the server side can been seen,
+  which are only temporarily.
 </p>
 
 <a name="editing-exit"/>
 <h2>Exit</h2>
 <p>
-The "Exit" action allows to quit the client. If the user clicks on the "Exit" menu item,
-then the client opens a dialog, where the user can select the following buttons/options:
+  The "Exit" action allows to quit the client. If the user clicks on the
+  "Exit" menu item, then the client opens a dialog, where the user can select
+  the following buttons/options:
 </p>
 
 <ul>
@@ -215,18 +254,19 @@ then the client opens a dialog, where the user can select the following buttons/
 </ul>
   
 <p>
-If a lock has been created during opening, then this locks needs to be removed at this point.
-In case the CMS would support breaking the lock by another user, then the CMS should communicate
-a broken lock to the client.
+  If a lock has been created during opening, then this locks needs to be
+  removed at this point.  In case the CMS would support breaking the lock by
+  another user, then the CMS should communicate a broken lock to the client.
 </p>
 
 <a name="editing-link-lookup"/>
 <h2>Hypertext Link Lookup</h2>
 <p>
-The hypertext link lookup functionality allows to add a hypertext link
-to a text. One selects part of a text and clicks on the link icon which is triggering
-a request to the server(s) in order to provide the content resp. interface for a link
-selecting dialog. One could imagine the following types of dialogs:
+  The hypertext link lookup functionality allows to add a hypertext link to a
+  text. One selects part of a text and clicks on the link icon which is
+  triggering a request to the server(s) in order to provide the content resp.
+  interface for a link selecting dialog. One could imagine the following types
+  of dialogs:
 </p>
 
 <ul>
@@ -273,11 +313,13 @@ selecting dialog. One could imagine the following types of dialogs:
 <a name="search"/>
 <h2>Search</h2>
 <p>
-In the case of OpenOffice.org one can add new search engines by clicking on Tools --> Options --> Internet --> Search
+  In the case of OpenOffice.org one can add new search engines by clicking on
+  Tools --> Options --> Internet --> Search
 </p>
 
 <p>
-As an exchange format one might want to use the <a href="http://opensearch.a9.com/">OpenSearch RSS</a>.
+  As an exchange format one might want to use the <a
+  href="http://opensearch.a9.com/">OpenSearch RSS</a>.
 </p>
 
 <a name="workflow"/>
