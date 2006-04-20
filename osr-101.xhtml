@@ -27,10 +27,10 @@ Zhiwu Xie <a href="mailto:zxie@ece.unm.edu?subject=OSR-101">zxie@ece.unm.edu</a>
 <hr/>
 <h2>Abstract</h2>
 <p>
-Basically every Content Management System is implementing the same 
-functionality from a user interface point of view. Such basic functionalities 
-are for instance creating a new document or opening an existing document for 
-editing. More advanced functionalities are for instance changing workflow 
+Basically every Content Management System is implementing the same
+functionality from a user interface point of view. Such basic functionalities
+are for instance creating a new document or opening an existing document for
+editing. More advanced functionalities are for instance changing workflow
 states and accessing revisons.
 </p>
 
@@ -80,12 +80,12 @@ from the server side implementation.
 <a name="related"/>
 <h2>Related: WebDAV, Atom Protocol, ...</h2>
 <p>
-  <a href="http://www.webdav.org">WebDAV</a> may well form the basis for 
+  <a href="http://www.webdav.org">WebDAV</a> may well form the basis for
   client-server communication in a typical OSR-101 setup. DAV provides a
   basic (although somewhat low-level) API for managing content on servers,
   and is already available on most modern webservers. Where required, the HTTP
   protocol can be extended even further to provide higher level functionality,
-  or functionality that is simply not provided by DAV (of course another 
+  or functionality that is simply not provided by DAV (of course another
   implementation is also possible).
 </p>
 <p>
@@ -101,25 +101,25 @@ from the server side implementation.
   with grey areas in the proposals/standards.
 </p>
 <p>
-  Also see the Universal Content Broker Project 
-  (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>) ... 
-  also see the 
-  <a href="http://bitworking.org/projects/atom/">Atom Protocol</a> (or 
-  <a href="http://webservices.xml.com/lpt/a/ws/2003/08/05/salz.html">Atom 
+  Also see the Universal Content Broker Project
+  (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>) ...
+  also see the
+  <a href="http://bitworking.org/projects/atom/">Atom Protocol</a> (or
+  <a href="http://webservices.xml.com/lpt/a/ws/2003/08/05/salz.html">Atom
   API</a>).
 </p>
 
 <p>
-  It might also be interesting to follow the development of the OpenUsability 
-  project <a href="http://openusability.org/projects/cms-uig/">User Interface 
+  It might also be interesting to follow the development of the OpenUsability
+  project <a href="http://openusability.org/projects/cms-uig/">User Interface
   Guidelines for Content Management Systems</a>.
 </p>
 
 <a name="introspection"/>
 <h2>Introspection</h2>
 <p>
-  The communication between the client and server can be initialized by 
-  introspection. This also allows the server to tell the client of it's 
+  The communication between the client and server can be initialized by
+  introspection. This also allows the server to tell the client of it's
   capabilities (e.g. level 1, 2, 3 compliance).
 </p>
 
@@ -202,13 +202,13 @@ from the server side implementation.
 <h2>Open</h2>
 <p>
   The action "Open" allows to open an existing document.
-  If the client has already a document loaded and a new document will be 
-  opened, then the loaded document might be closed automatically (please also 
+  If the client has already a document loaded and a new document will be
+  opened, then the loaded document might be closed automatically (please also
   see "Close" and "Save All").
 </p>
 
 <p>
-  The CMS needs to provide a directory listing to the client such that the 
+  The CMS needs to provide a directory listing to the client such that the
   client can provide a dialog in order to let the user select a document.
 </p>
 
@@ -223,14 +223,14 @@ from the server side implementation.
 </p>
 
 <p>
-  The document path needs to be kept within the client in order to allow 
+  The document path needs to be kept within the client in order to allow
   saving to the original document on the server side.
 </p>
 
 <a name="editing-save"/>
 <h2>Save</h2>
 <p>
-  The "Save" action allows to save a document to the path which was selected 
+  The "Save" action allows to save a document to the path which was selected
   when loading the document with the "Open" action.
 </p>
 
@@ -262,7 +262,7 @@ Get a tree
   <li>Don't save (Exit but do not save)</li>
   <li>Cancel (Do not exit)</li>
 </ul>
-  
+
 <p>
   If a lock has been created during opening, then this locks needs to be
   removed at this point.  In case the CMS would support breaking the lock by
