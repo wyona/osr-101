@@ -23,44 +23,39 @@
             Andreas Wuest <a href="mailto:awuest@student.ethz.ch?subject=OSR-101">awuest@student.ethz.ch</a>
         </dd>
         <hr/>
-        <h2>Abstract</h2>
-        <p>
-        Basically every Content Management System is implementing the same
-        functionality from a user interface point of view. Such basic functionalities
-        are for instance creating a new document or opening an existing document for
-        editing. More advanced functionalities are for instance changing workflow
-        states and accessing revisons.
-        </p>
-
-        <p>
-        The goal of OSR-101 is to define a generic interface between a CMS client (e.g. OpenOffice.org, BXE, ...)
-        and an actual CMS on the server side (e.g. Silva, Bitflux CMS, Apache Lenya, ...) to free the user interface
-        from the server side implementation.
-        </p>
 
         <h2>Table of contents</h2>
         <ol>
+          <li><a href="#introduction">Introduction</a></li>
           <li><a href="#related">Related: WebDAV, Atom Protocol, ...</a></li>
-          <li><a href="#introspection">Introspection</a></li>
-          <li>Menus</li>
-          <li>Editing
-            <ol>
-              <li><a href="#editing-new">New</a></li>
-              <li><a href="#editing-open">Open</a></li>
-              <li><a href="#editing-save">Save</a></li>
-              <li><a href="#editing-save-as">Save As</a></li>
-              <li><a href="#editing-exit">Exit</a></li>
-              <li>Close</li>
-              <li>Close All</li>
-              <li>Save All</li>
-              <li><a href="#editing-link-lookup">Hypertext Link Lookup</a></li>
-            </ol>
+          <li>Operations
+            <ul>
+            <li><a href="#introspection">Introspection</a></li>
+            </ul>
           </li>
-          <li><a href="#search">Search</a></li>
-          <li>Workflow</li>
-          <li>Revisions</li>
-          <li>Access Control</li>
-          <li>Scheduling</li>
+          <li>Customizable GUI (e.g. Menus)</li>
+          <li>Content Management Functionality
+            <ul>
+            <li>Editing
+              <ol>
+                <li><a href="#editing-new">New</a></li>
+                <li><a href="#editing-open">Open</a></li>
+                <li><a href="#editing-save">Save</a></li>
+                <li><a href="#editing-save-as">Save As</a></li>
+                <li><a href="#editing-exit">Exit</a></li>
+                <li>Close</li>
+                <li>Close All</li>
+                <li>Save All</li>
+                <li><a href="#editing-link-lookup">Hypertext Link Lookup</a></li>
+              </ol>
+            </li>
+            <li><a href="#search">Search</a></li>
+            <li>Workflow</li>
+            <li>Revisions</li>
+            <li>Access Control</li>
+            <li>Scheduling</li>
+            </ul>
+          </li>
           <li>Misc
             <ol>
               <li>Clients supporting OSR-101
@@ -80,6 +75,22 @@
         </ol>
 
         <hr/>
+
+        <a name="introduction"/>
+        <h2>Introduction</h2>
+        <p>
+        Basically every Content Management System is implementing the same
+        functionality from a user interface point of view. Such basic functionalities
+        are for instance creating a new document or opening an existing document for
+        editing. More advanced functionalities are for instance changing workflow
+        states and accessing revisons.
+        </p>
+
+        <p>
+        The goal of OSR-101 is to define a generic interface between a CMS client (e.g. OpenOffice.org, BXE, ...)
+        and an actual CMS on the server side (e.g. Silva, Bitflux CMS, Apache Lenya, ...) to free the user interface
+        from the server side implementation.
+        </p>
 
         <a name="related"/>
         <h2>Related: WebDAV, Atom Protocol, ...</h2>
