@@ -11,6 +11,7 @@ Editors
 http://www.oreillynet.com/pub/a/mozilla/2003/10/03/mozile.html
 http://mozile.mozdev.org/index.html
 http://www.nvu.com
+http://rhaptos.org/downloads/editing/etna/
 
 Similar Projects
 ----------------
