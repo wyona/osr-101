@@ -1,3 +1,6 @@
+
+General
+-------
 http://xml.coverpages.org/hierarchies.html
 http://www.tei-c.org/wiki/index.php/SIG:Overlap
 http://www.tei-c.org/Activities/SIG/Overlap/index.xml
@@ -7,6 +10,11 @@ Editors
 -------
 http://www.oreillynet.com/pub/a/mozilla/2003/10/03/mozile.html
 http://mozile.mozdev.org/index.html
+http://www.nvu.com
+
+Similar Projects
+----------------
+http://www.flock.com
 
 
 Papers, Articles and Reports
