@@ -10,7 +10,7 @@
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
-        <dt>Revision Date: 26 April 2006</dt>
+        <dt>Revision Date: 16 May 2006</dt>
         <br/>
         <dt>Editors:</dt>
         <dd>
@@ -169,19 +169,38 @@
 <?xml version="1.0"?>
 
 <introspection xmlns="http://www.wyona.org/osr-101/1.0">
-<search>
-  <uri="http://search.msn.com/results.aspx?format=rss&amp;FORM=ZZRE"/>
-  <query-string-parameter name="q"/>
-  <response type="rss"/>
-</search>
-<search>
-  <uri="http://www.google.com/search?hl=en&amp;btnG=Google+Search"/>
-  <query-string-parameter name="q"/>
-  <response type="html"/>
-</search>
+
+<edit href="http://foo.bar.com/lenya/default/authoring/index.xml" mime-type="application/xml">
+  <schemas>
+    <schema href="http://foo.bar.com/lenya/modules/docbook/schemas/simple.rng" type="RelaxNG"/>
+    <schema href="http://foo.bar.com/lenya/modules/docbook/schemas/default.rng" type="RelaxNG"/>
+  </schemas>
+  <styles>
+    <style href="http://foo.bar.com/lenya/modules/xhtml/styles/default.xsl"/>
+    <style href="http://foo.bar.com/lenya/modules/xhtml/styles/simple.xsl"/>
+  </styles>
+</edit>
+<!-- NOTE: What about delivering this as package, e.g. with a MANIFEST included? -->
+
 <new>
   <templates uri="http://foo.bar/templates"/>
 </new>
+
+<navigation>
+  <sitetree href=""/>
+  <topicmap href=""/>
+  <search type="simple">
+    <uri="http://search.msn.com/results.aspx?format=rss&amp;FORM=ZZRE"/>
+    <query-string-parameter name="q"/>
+    <response type="rss"/>
+  </search>
+  <search type="simple">
+    <uri="http://www.google.com/search?hl=en&amp;btnG=Google+Search"/>
+    <query-string-parameter name="q"/>
+    <response type="html"/>
+  </search>
+</navigation>
+
 </introspection>
 ]]>
         </pre>
