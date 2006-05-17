@@ -10,7 +10,7 @@
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
-        <dt>Revision Date: 16 May 2006</dt>
+        <dt>Revision Date: 17 May 2006</dt>
         <br/>
         <dt>Editors:</dt>
         <dd>
@@ -267,6 +267,14 @@
           saving to the original document on the server side.
         </p>
 
+        <h3>Usecases</h3>
+        <ul>
+          <li>Open from Local Desktop</li>
+          <li>Open from Server (server does not support locking)</li>
+          <li>Open from Server (checkout with lock)</li>
+          <li>Open from Server (checkout without lock although server does support locking)</li>
+        </ul>
+
         <a name="editing-save"/>
         <h2>Save</h2>
         <p>
@@ -280,6 +288,15 @@
           to the confusing situation, that changes on the server side can been seen,
           which are only temporarily.
         </p>
+
+        <h3>Usecases</h3>
+        <ul>
+          <li>Save to Local Desktop (default behaviour in case document has been opened from local desktop)</li>
+          <li>Save to Local Desktop (although document has been retrieved from server)</li>
+          <li>Save to Server (server does not support locking)</li>
+          <li>Save to Server temp version (in case server supports this functionality)</li>
+          <li>Save to Server (checkin, remove the lock)</li>
+        </ul>
 
         <a name="editing-save-as"/>
         <h2>Save As</h2>
