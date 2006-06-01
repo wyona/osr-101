@@ -3,6 +3,6 @@
 <introspection xmlns="http://www.wyona.org/osr-101/1.0">
 <edit mime-type="application/xhtml+xml">
   <open url="osr-101.xhtml" method="GET"/>
-  <open url="osr-101.xhtml?yanel.resource.usecase=save" method="PUT"/>
+  <save url="osr-101.xhtml?yanel.resource.usecase=save" method="PUT"/>
 </edit>
 </introspection>
