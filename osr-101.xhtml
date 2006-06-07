@@ -15,7 +15,7 @@
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
-        <dt>Revision Date: 1 June 2006</dt>
+        <dt>Revision Date: 7 June 2006</dt>
         <br/>
         <dt>Editors:</dt>
         <dd>
@@ -218,6 +218,22 @@
 </introspection>
 ]]>
         </pre>
+
+        <p>
+        The version of introspection is given by the following namespace convention: http://www.wyona.org/osr-101/VERSION
+        </p>
+
+        <h3>Backward Compatibility</h3>
+        <p>
+        If the client supports higher versions of the introspection spec than the server can deliver, but
+        the client still offers the lower version introspection parsers with the correct internal mapping.
+        </p>
+
+        <h3>Forward Compatibility</h3>
+        <p>
+        If the client introspection implementation version is lower than the introspection version which
+        is delivered by the server, then one would assume the client to throw a warning, but nevertheless the client should try to handle this newer version as good as possible. But this can only work if the spec is enhanced only (e.g. adding an attribute or element), and never really changed. Another solution might be that the client adds its supported introspection versions to the HTTP header of the GET request to retrieve the introspection from the server.
+        </p>
 
         <a name="editing-new"/>
         <h2>New</h2>
