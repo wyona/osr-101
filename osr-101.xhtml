@@ -15,7 +15,7 @@
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
-        <dt>Revision Date: 8 June 2006</dt>
+        <dt>Revision Date: 14 June 2006</dt>
         <br/>
         <dt>Editors:</dt>
         <dd>
@@ -42,6 +42,8 @@
           <li>Operations
             <ul>
             <li><a href="#introspection">Introspection</a></li>
+            <li><a href="#authentication">Authentication</a></li>
+            <li><a href="#authorization">Authorization</a></li>
             </ul>
           </li>
           <li>Customizable GUI (e.g. Menus)</li>
@@ -73,6 +75,7 @@
                 <ol>
                   <li><a href="http://svn.wyona.com/repos/public/osr-101/trunk/clients/vanes/">Vanes</a> (Luxor based)</li>
                   <li><a href="http://svn.wyona.com/repos/public/mozilla-thunderbird/">CMSConnector</a> (Mozilla Mail/Mailnews extension to upload attachments directly to a CMS)</li>
+                  <li><a href="http://svn.wyona.com/repos/public/phoenix/trunk">Phoenix</a></li>
                 </ol>
               </li>
               <li>Servers supporting OSR-101</li>
@@ -235,6 +238,18 @@
         is delivered by the server, then one would assume the client to throw a warning, but nevertheless the client should try to handle this newer version as good as possible. But this can only work if the spec is enhanced only (e.g. adding an attribute or element), and never really changed. Another solution might be that the client adds its supported introspection versions to the HTTP header of the GET request to retrieve the introspection from the server, e.g. OSR-101-Version: 1.0.
         </p>
 
+        <a name="authentication"/>
+        <h2>Authentication</h2>
+        <p>
+        ...
+        </p>
+
+        <a name="authorization"/>
+        <h2>Authorization</h2>
+        <p>
+        ...
+        </p>
+
         <a name="editing-new"/>
         <h2>New</h2>
         <p>
@@ -304,6 +319,35 @@
           <li>Open from Server (checkout with lock)</li>
           <li>Open from Server (checkout without lock although server does support locking)</li>
         </ul>
+
+<h4>Open from Server with locking/checkout implemented</h4>
+<p>
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<cmi xmlns="http://www.wyona.org/osr-101/1.0">
+  <open url="/hello/world.html">
+  <locked>
+    <locked-by>Jimi Hendrix</locked-by>
+    <lock-date format="standard">1969.10.03T15:34:26</lock-date>
+    <!-- Optional. Depending on server implementation -->
+    <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
+  </locked>
+  </open>
+</cmi>
+]]>
+</pre>
+</p>
+
+<p>
+How does the server respond to the "break-lock" request?
+<ul>
+  <li>Server breaks lock, check-out for new user and returns content.</li>
+  <li>Server breaks lock and returns lock broken successfully, please retry opening again ...</li>
+  <li>Server responds breaking the lock failed for whatever reason.</li>
+</ul>
+</p>
 
         <a name="editing-save"/>
         <h2>Save</h2>
