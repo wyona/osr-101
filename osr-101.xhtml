@@ -180,6 +180,10 @@
 
 <edit mime-type="application/xml" version="433453">
   <open url="http://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=open" method="GET"/>
+<!-- Also see authentication and authorization ... -->
+<!--
+  <open url="https://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=open" method="GET"/>
+-->
   <save url="http://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=save" method="PUT"/>
 
   <schemas>
@@ -241,13 +245,18 @@
         <a name="authentication"/>
         <h2>Authentication</h2>
         <p>
-        ...
+        <ul>
+          <li><a href="http://httpd.apache.org/docs/1.3/howto/auth.html">http://httpd.apache.org/docs/1.3/howto/auth.html</a></li>
+          <li><a href="ftp://ftp.isi.edu/in-notes/rfc2616.txt">HTTP Credentials</a></li>
+          <li><a href="http://bitworking.org/projects/atom/draft-ietf-atompub-protocol-08.html">Securing Atom</a></li>
+          <li>What about client certificates?</li>
+        </ul>
         </p>
 
         <a name="authorization"/>
         <h2>Authorization</h2>
         <p>
-        ...
+        What about authorization of the introspection document?
         </p>
 
         <a name="editing-new"/>
