@@ -6,7 +6,7 @@
 
 <html>
     <head>
-      <link rel="cms.client" type="application/x.osr+xml" href="introspection-osr-101.xml" title="OSR-101"/>
+      <link rel="neutron-introspection" type="application/neutron+xml" href="introspection.xml"/>
       <title>OSR-101 - Specification</title>
     </head>
 
@@ -15,7 +15,7 @@
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
-        <dt>Revision Date: 14 June 2006</dt>
+        <dt>Revision Date: 16 June 2006</dt>
         <br/>
         <dt>Editors:</dt>
         <dd>
@@ -162,7 +162,7 @@
 
 <html>
   <head>
-    <link rel="cms.client" type="application/x.osr+xml" href="introspection.xml" title="OSR-101"/>
+    <link rel="neutron-introspection" type="application/neutron+xml" href="introspection.xml"/>
   </head>
 </html>
 ]]>
@@ -176,9 +176,21 @@
 <![CDATA[
 <?xml version="1.0"?>
 
-<introspection xmlns="http://www.wyona.org/osr-101/1.0">
+<introspection xmlns="http://www.wyona.org/neutron/1.0">
 
-<edit mime-type="application/xml" version="433453">
+<edit mime-type="application/xhtml+xml" name="Related Content">
+  <!-- Edit "Related Content" -->
+  <open url="http://foo.bar.com/test.xhtml" method="GET"/>
+  <!-- Save "Related Content" -->
+  <save url="http://foo.bar.com/test.xhtml?action=save" method="POST"/>
+
+  <!-- Checkout and Edit "Related Content" -->
+  <checkout url="http://foo.bar.com/test.xhtml?action=checkout" method="GET"/>
+  <!-- Save and Checkin "Related Content" -->
+  <checkin url="http://foo.bar.com/test.xhtml?action=checkin" method="POST"/>
+</edit>
+
+<edit mime-type="application/xml" version="433453" name="Main Content">
   <open url="http://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=open" method="GET"/>
 <!-- Also see authentication and authorization ... -->
 <!--
@@ -194,11 +206,6 @@
     <style href="http://foo.bar.com/lenya/modules/xhtml/styles/default.xsl"/>
     <style href="http://foo.bar.com/lenya/modules/xhtml/styles/simple.xsl"/>
   </styles>
-</edit>
-
-<edit save="" mime-type="application/xhtml+xml">
-  <open url="http://foo.bar.com/test.xhtml" method="GET"/>
-  <save url="http://foo.bar.com/test.xhtml?action=save" method="POST"/>
 </edit>
 
 <!-- NOTE: What about delivering this as package, e.g. with a MANIFEST included? -->
@@ -227,7 +234,7 @@
         </pre>
 
         <p>
-        The version of introspection is given by the following namespace convention: http://www.wyona.org/osr-101/VERSION
+        The version of introspection is given by the following namespace convention: http://www.wyona.org/neutron/VERSION
         </p>
 
         <h3>Backward Compatibility</h3>
@@ -335,16 +342,16 @@
 <![CDATA[
 <?xml version="1.0"?>
 
-<cmi xmlns="http://www.wyona.org/osr-101/1.0">
+<message xmlns="http://www.wyona.org/neutron/1.0">
   <open url="/hello/world.html">
-  <locked>
-    <locked-by>Jimi Hendrix</locked-by>
-    <lock-date format="standard">1969.10.03T15:34:26</lock-date>
-    <!-- Optional. Depending on server implementation -->
-    <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
-  </locked>
+    <locked>
+      <locked-by>Jimi Hendrix</locked-by>
+      <lock-date format="standard">1969.10.03T15:34:26</lock-date>
+      <!-- Optional. Depending on server implementation -->
+      <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
+    </locked>
   </open>
-</cmi>
+</message>
 ]]>
 </pre>
 </p>
