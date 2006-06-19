@@ -1,0 +1,19 @@
+Neutron is a vendor-neutral, open, XML-based CMS interface, enabling client applications to access Content Management Systems in a programmatical way. Neutron offers introspection, file operations and workflow functionality.
+
+Via introspection, Neutron allows visitors of a document (e.g. a webpage) to find out about the various source documents (fragments) which make up its content. Introspection tells the client about the operations it can perform on a fragment, as well as about meta-data associated with that fragment. Neutron is agnostic to the type of data it describes, but offers additional support for XML-based dcouments like the ability to specify associated schemas or stylesheets.
+
+For each document fragment, the Neutron protocol specifies file operations like "open" and "save" (checking a fragment in and out without locking), "new", "checkout" and "checkin" (checking a fragment in and out using a lock), "versioning" (requesting a specific version of a fragment), "lock-breaking" (if a user checked out a document without checking it back in, and he never released the lock on it), "resource listing" (to browse the available fragments on the CMS) and "resource search" (to search for a fragment on the server based on name, type, and meta-data).
+
+Neutron is connection-independent which means that you can operate on a document over time, during which you can go offline, change your IP address, etc., but your workflow will not break.
+
+[??workflow??]
+
+Access control is solved independent of Neutron. Nevertheless, a server can of course always choose to not reveal all available functionality to unauthorised users (e.g. based on HTPP authorisation or client-side certificates), or for instance requiring uploads to use a specific method which in turn implies a certain authentication and authorisation process.
+
+In contrast to other protocols, servers and clients are free to expose whatever part of functionality they want, or actually implement. For example, a CMS which does not support locking may only expose "open" and "save" operations, and a CMS which does not support versioning may simply ignore that part of the protocol.
+
+In constrast to WebDAV and APP, Neutron does not dictate a specific protocol to use for up- and downloading data. Instead, the server can list the various method it supports, and the client can then pick the protocol which fits best. Therefore, a server may for instance require the client to use a simple HTTP GET request on a specific URI to checkout and lock a document, whereas requring the client to use WebDAV to store the document back to the CMS.
+
+In the light of new revisions of the standard, Neutron specifies how clients and servers negotiate the supported protocol versions, such that they can make sure they always use the latest version both client and server support.
+
+[Phoenix is an open-source, Mozilla-based Neutron client to edit fragments on a CMS. It is specifically tailord towards the Neutron specification, and offers complete support for the protocol. It can edit plain-text and XML fragments in source mode, as well as XML fragments with associated XSLT stylesheets and (X)HTML fragments in WYSIWYG mode. Furhtemore, Phoenix perform validation of document fragments based on RelaxNG or XML Schemas.]
