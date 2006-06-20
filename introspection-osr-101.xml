@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
-<introspection xmlns="http://www.wyona.org/osr-101/1.0">
-<edit mime-type="application/xhtml+xml">
+<introspection xmlns="http://www.wyona.org/neutron/1.0">
+<edit mime-type="application/xhtml+xml" name="Neutron Specification">
   <open url="osr-101.xhtml" method="GET"/>
   <save url="osr-101.xhtml?yanel.resource.usecase=save" method="PUT"/>
 </edit>
