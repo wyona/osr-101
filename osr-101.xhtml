@@ -15,7 +15,7 @@
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
-        <dt>Revision Date: 16 June 2006</dt>
+        <dt>Revision Date: 21 June 2006</dt>
         <br/>
         <dt>Editors:</dt>
         <dd>
@@ -181,13 +181,14 @@
 <edit mime-type="application/xhtml+xml" name="Related Content">
   <!-- Edit "Related Content" -->
   <open url="http://foo.bar.com/test.xhtml" method="GET"/>
-  <!-- Save "Related Content" -->
-  <save url="http://foo.bar.com/test.xhtml?action=save" method="POST"/>
 
   <!-- Checkout and Edit "Related Content" -->
   <checkout url="http://foo.bar.com/test.xhtml?action=checkout" method="GET"/>
+
+  <!-- Save "Related Content" -->
+  <save url="http://foo.bar.com/test.xhtml?action=save" method="POST"/>
   <!-- Save and Checkin "Related Content" -->
-  <checkin url="http://foo.bar.com/test.xhtml?action=checkin" method="POST"/>
+  <save url="http://foo.bar.com/test.xhtml?action=checkin" method="POST"/>
 </edit>
 
 <edit mime-type="application/xml" version="433453" name="Main Content">
@@ -342,16 +343,16 @@
 <![CDATA[
 <?xml version="1.0"?>
 
-<message xmlns="http://www.wyona.org/neutron/1.0">
-  <open url="/hello/world.html">
-    <locked>
-      <locked-by>Jimi Hendrix</locked-by>
-      <lock-date format="standard">1969.10.03T15:34:26</lock-date>
-      <!-- Optional. Depending on server implementation -->
-      <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
-    </locked>
-  </open>
+<exception xmlns="http://www.wyona.org/neutron/1.0" type="checkout">
+  <message>Document has already been checked-out by ...</message>
+  <checkout url="/hello/world.html">
+    <locked-by>Jimi Hendrix</locked-by>
+    <lock-date format="standard">1969.10.03T15:34:26</lock-date>
+    <!-- Optional. Depending on server implementation -->
+    <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
+  </checkout>
 </message>
+</exception>
 ]]>
 </pre>
 </p>
@@ -364,6 +365,8 @@ How does the server respond to the "break-lock" request?
   <li>Server responds breaking the lock failed for whatever reason.</li>
 </ul>
 </p>
+
+
 
         <a name="editing-save"/>
         <h2>Save</h2>
@@ -387,6 +390,32 @@ How does the server respond to the "break-lock" request?
           <li>Save to Server temp version (in case server supports this functionality)</li>
           <li>Save to Server (checkin, remove the lock)</li>
         </ul>
+
+<p>
+If the server is able to save successfully, then it should return HTTP Status Code 200.
+</p>
+
+<p>
+If the server cannot save the data, then it should return HTTP Status Code 500 and a message.
+</p>
+
+<p>
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<exception xmlns="http://www.wyona.org/neutron/1.0" type="checkin">
+  <message>Checkin failed, because document has been checked-out by ...</message>
+  <save url="/hello/world.html">
+    <locked-by>Jimi Hendrix</locked-by>
+    <lock-date format="standard">1969.10.03T15:34:26</lock-date>
+    <!-- Optional. Depending on server implementation -->
+    <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
+  </save>
+</exception>
+]]>
+</pre>
+</p>
 
         <a name="editing-save-as"/>
         <h2>Save As</h2>
