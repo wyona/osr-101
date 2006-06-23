@@ -345,6 +345,7 @@
 
 <exception xmlns="http://www.wyona.org/neutron/1.0" type="checkout">
   <message>Document has already been checked-out by ...</message>
+
   <checkout url="/hello/world.html">
     <locked-by>Jimi Hendrix</locked-by>
     <lock-date format="standard">1969.10.03T15:34:26</lock-date>
@@ -396,7 +397,7 @@ If the server is able to save successfully, then it should return HTTP Status Co
 </p>
 
 <p>
-If the server cannot save the data, then it should return HTTP Status Code 500 and a message.
+If the server cannot save the data, then it should return <a href="http://www.w3.org/Protocols/HTTP/HTRESP.html">HTTP Status Code 500</a> and a message.
 </p>
 
 <p>
@@ -406,12 +407,31 @@ If the server cannot save the data, then it should return HTTP Status Code 500 a
 
 <exception xmlns="http://www.wyona.org/neutron/1.0" type="checkin">
   <message>Checkin failed, because document has been checked-out by ...</message>
-  <save url="/hello/world.html">
+
+  <checkin url="/hello/world.html">
     <locked-by>Jimi Hendrix</locked-by>
     <lock-date format="standard">1969.10.03T15:34:26</lock-date>
     <!-- Optional. Depending on server implementation -->
     <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
-  </save>
+  </checkin>
+</exception>
+]]>
+</pre>
+</p>
+
+<p>If the server has trouble saving the data, e.g.</p>
+
+<p>
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<exception xmlns="http://www.wyona.org/neutron/1.0" type="data-not-well-formed">
+  <message>Received data is not well-formed XML ...</message>
+
+  <data-not-well-formed url="/hello/world.html">
+    <line number="45" message="element not closed"/>
+  </data-not-well-formed>
 </exception>
 ]]>
 </pre>
