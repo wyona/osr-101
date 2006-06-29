@@ -267,6 +267,44 @@
         What about authorization of the introspection document?
         </p>
 
+<p>
+Response from Server to Client
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<exception xmlns="http://www.wyona.org/neutron/1.0" type="authorization">
+  <message>Authorization denied for "URL" ...</message>
+
+  <authentication>
+    <login url="https://demo.phoenix.wyona.org/protected/?action=login-neutron">
+      <message>Login for realm 'phoenix-demo' ...</message>
+      <form>
+        <param description="Username" name="username"/>
+        <param description="Password" name="passwd"/>
+      </form>
+    </login>
+    <logout url="http://demo.phoenix.wyona.org/?action=logout"/>
+  </authentication>
+</exception>
+]]>
+</pre>
+</p>
+
+<p>
+Response from Client to Server
+<pre>
+<![CDATA[
+<?xml version="1.0"?>
+
+<authentication xmlns="http://www.wyona.org/neutron/1.0">
+  <param name="username">lenya</param>
+  <param name="passwd">levi</param>
+</authentication>
+]]>
+</pre>
+</p>
+
         <a name="editing-new"/>
         <h2>New</h2>
         <p>
@@ -352,7 +390,6 @@
     <!-- Optional. Depending on server implementation -->
     <break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
   </checkout>
-</message>
 </exception>
 ]]>
 </pre>
