@@ -64,13 +64,23 @@
         <a name="introduction"/>
         <h2>Introduction</h2>
         <p>
-Neutron is a set of XML-based commands and configuration options that allow for remote operation of content management systems (cms). Neutron provides a thin abstraction layer for what most of today's content management systems offer in terms of user operations: concurrent access to resources, basic file operations, editing based on some sort of datatype constraints, accessing revisions, dealing with workflow stages, custom authentication schemes and more. Neutron is typically used over HTTP. However any other transport protocol can be used to establish a request/response chain of neutron instructions or to retrieve Neutron configuration options.
+Neutron is a set of XML-based commands and configuration options that allow for remote operation of Content Management Systems (CMS). Neutron provides a thin abstraction layer for what most of today's CMS offer in terms of user operations: 
+<ul>
+<li>concurrent access to resources</li>
+<li>basic file operations</li>
+<li>editing based on datatype constraints</li>
+<li>accessing revisions</li>
+<li>dealing with workflow stages</li>
+<li>custom authentication schemes</li> 
+<li>and more</li> 
+</ul>
+Neutron is typically used over HTTP. However any other transport protocol can be used to establish a Neutron request/response chain or to retrieve Neutron configuration directives.
 </p>
 <p>
-Most cms vendors implement their own frontend components for the above mentioned tasks or provide some sort of public API for third party component integration. Neutron is ment to be a standard to leverage integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management systems.  
+CMS vendors usually implement their own frontend components for the above mentioned tasks or provide some sort of public API for third party component integration. Neutron is ment to be a standard that leverages  integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management systems.  
 </p>
 <p>
-Neutron focuses on xml-based systems by providing a comprehensive set of instructions for dealing with xml-based resources. However, usage of xml-based resources is not required. Neutron also covers transactions of binary or whatever formatted resources while being extensible enough for applications to deal with such resources in a consistent and predictible manner. 
+Neutron focuses on xml-based systems by providing a comprehensive set of instructions for dealing with xml-based resources. However, usage of xml-based resources is not required. Neutron also covers transactions of binary or whatever formatted data while being extensible enough for integrators to deal with data formats of their choice. 
 </p>
 <p>
 For examples and usage patterns see Appendix I (Examples).
