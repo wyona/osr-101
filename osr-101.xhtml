@@ -67,8 +67,10 @@
 Neutron is a set of XML-based commands and configuration options that allow for remote operation of Content Management Systems (CMS). Neutron provides a thin abstraction layer for what most of today's CMS offer in terms of user operations: 
 <ul>
 <li>concurrent access to resources</li>
-<li>basic file operations</li>
+<li>basic file operations (move, delete)</li>
+<li>creating resources based on templates</li>
 <li>editing based on datatype constraints</li>
+<li>editing in WYSIWYG mode</li>
 <li>accessing revisions</li>
 <li>dealing with workflow stages</li>
 <li>custom authentication schemes</li> 
@@ -77,7 +79,7 @@ Neutron is a set of XML-based commands and configuration options that allow for 
 Neutron is typically used over HTTP. However any other transport protocol can be used to establish a Neutron request/response chain or to retrieve Neutron configuration directives.
 </p>
 <p>
-CMS vendors usually implement their own frontend components for the above mentioned tasks or provide some sort of public API for third party component integration. Neutron is ment to be a standard that leverages  integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management systems.  
+CMS vendors usually implement their own frontend components for the operations listed above and/or implement a public API for third party component integration. Neutron is ment to be a standard that leverages  integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management systems.  
 </p>
 <p>
 Neutron focuses on xml-based systems by providing a comprehensive set of instructions for dealing with xml-based resources. However, usage of xml-based resources is not required. Neutron also covers transactions of binary or whatever formatted data while being extensible enough for integrators to deal with data formats of their choice. 
