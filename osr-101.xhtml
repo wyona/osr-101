@@ -64,21 +64,20 @@
         <a name="introduction"/>
         <h2>Introduction</h2>
         <p>
-        Basically every Content Management System is implementing the same
-        functionality from a user interface point of view. Such basic functionalities
-        are for instance creating a new document or opening an existing document for
-        editing. More advanced functionalities are for instance changing workflow
-        states and accessing revisons.
-        </p>
+Neutron is a set of XML-based commands and configuration options that allows for remote operation of content management systems (cms). Neutron provides a thin abstraction layer for what most of today's content management systems offer in terms of user operations: concurrent access to resources, basic file operations, editing based on some sort of datatype constraints, accessing revisions, dealing with workflow stages, custom authentication schemes and more. Neutron is typically used over HTTP. However any other transport protocol can be used to establish a request/response chain of neutron instructions or to retrieve Neutron configuration options.
+</p>
+<p>
+Most cms vendors implement their own frontend components for the above mentioned tasks or provide some sort of public API for third party component integration. Neutron is ment to be a standard to leverage integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management systems.  
+</p>
+<p>
+Neutron focuses on xml-based systems by providing a comprehensive set of instructions for dealing with xml-based resources. However, use of xml-based resources is not required. Neutron also covers transactions of binary or whatever formatted resources while being extensible enough for applications to deal with such resources in a consistent and predictible manner. 
+</p>
+<p>
+For examples and usage patterns see Appendix I (Examples).
+</p>
 
-        <p>
-        The goal of OSR-101 is to define a generic interface between a CMS client (e.g. OpenOffice.org, BXE, ...)
-        and an actual CMS on the server side (e.g. Silva, Bitflux CMS, Apache Lenya, ...) to free the user interface
-        from the server side implementation.
-        </p>
 
-        <a name="related"/>
-        <h2>Related: WebDAV, Atom Protocol, ...</h2>
+        <h2>Neutron compared to WebDAV and Atom</h2>
         <p>
           <a href="http://www.webdav.org">WebDAV</a> (<a href="http://www.webdav.org/specs/rfc2518.html">Spec</a>) may well form the basis for
           client-server communication in a typical OSR-101 setup. DAV provides a
