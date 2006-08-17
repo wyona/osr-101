@@ -162,57 +162,61 @@ For examples and usage patterns see Appendix I (Examples).
 
 <introspection xmlns="http://www.wyona.org/neutron/1.0">
 
-<edit mime-type="application/xhtml+xml" name="Related Content">
-  <!-- Edit "Related Content" -->
-  <open url="http://foo.bar.com/test.xhtml" method="GET"/>
+  <edit mime-type="application/xhtml+xml" name="Related Content">
+    <!-- Edit "Related Content" -->
+    <open url="http://foo.bar.com/test.xhtml" method="GET"/>
 
-  <!-- Checkout and Edit "Related Content" -->
-  <checkout url="http://foo.bar.com/test.xhtml?action=checkout" method="GET"/>
+    <!-- Checkout and Edit "Related Content" -->
+    <checkout url="http://foo.bar.com/test.xhtml?action=checkout" method="GET"/>
 
-  <!-- Save "Related Content" -->
-  <save url="http://foo.bar.com/test.xhtml?action=save" method="POST"/>
-  <!-- Save and Checkin "Related Content" -->
-  <save url="http://foo.bar.com/test.xhtml?action=checkin" method="POST"/>
-</edit>
+    <!-- Save "Related Content" -->
+    <save url="http://foo.bar.com/test.xhtml?action=save" method="POST"/>
 
-<edit mime-type="application/xml" version="433453" name="Main Content">
-  <open url="http://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=open" method="GET"/>
-<!-- Also see authentication and authorization ... -->
-<!--
-  <open url="https://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=open" method="GET"/>
--->
-  <save url="http://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=save" method="PUT"/>
+    <!-- Save and Checkin "Related Content" -->
+    <checkin url="http://foo.bar.com/test.xhtml?action=checkin" method="POST"/>
+  </edit>
 
-  <schemas>
-    <schema href="http://foo.bar.com/lenya/modules/docbook/schemas/simple.rng" type="RelaxNG"/>
-    <schema href="http://foo.bar.com/lenya/modules/docbook/schemas/default.rng" type="RelaxNG"/>
-  </schemas>
-  <styles>
-    <style href="http://foo.bar.com/lenya/modules/xhtml/styles/default.xsl"/>
-    <style href="http://foo.bar.com/lenya/modules/xhtml/styles/simple.xsl"/>
-  </styles>
-</edit>
+  <edit mime-type="application/xml" version="433453" name="Main Content">
+    <open url="http://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=open" method="GET"/>
 
-<!-- NOTE: What about delivering this as package, e.g. with a MANIFEST included? -->
+    <!-- Also see authentication and authorization ... -->
+    <!--
+        <open url="https://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=open" method="GET"/>
+    -->
 
-<new>
-  <templates uri="http://foo.bar/templates"/>
-</new>
+    <save url="http://foo.bar.com/lenya/default/authoring/index.html?lenya.usecase=save" method="PUT"/>
 
-<navigation>
-  <sitetree href=""/>
-  <topicmap href=""/>
-  <search type="simple">
-    <uri="http://search.msn.com/results.aspx?format=rss&amp;FORM=ZZRE"/>
-    <query-string-parameter name="q"/>
-    <response type="rss"/>
-  </search>
-  <search type="simple">
-    <uri="http://www.google.com/search?hl=en&amp;btnG=Google+Search"/>
-    <query-string-parameter name="q"/>
-    <response type="html"/>
-  </search>
-</navigation>
+    <schemas>
+      <schema href="http://foo.bar.com/lenya/modules/docbook/schemas/simple.rng" type="RelaxNG"/>
+      <schema href="http://foo.bar.com/lenya/modules/docbook/schemas/default.rng" type="RelaxNG"/>
+    </schemas>
+
+    <styles>
+      <style href="http://foo.bar.com/lenya/modules/xhtml/styles/default.xsl"/>
+      <style href="http://foo.bar.com/lenya/modules/xhtml/styles/simple.xsl"/>
+    </styles>
+  </edit>
+
+  <!-- NOTE: What about delivering this as package, e.g. with a MANIFEST included? -->
+
+  <new>
+    <templates uri="http://foo.bar/templates"/>
+  </new>
+
+  <navigation>
+    <sitetree href=""/>
+    <topicmap href=""/>
+    <search type="simple">
+      <uri="http://search.msn.com/results.aspx?format=rss&amp;FORM=ZZRE"/>
+      <query-string-parameter name="q"/>
+      <response type="rss"/>
+    </search>
+    <search type="simple">
+      <uri="http://www.google.com/search?hl=en&amp;btnG=Google+Search"/>
+      <query-string-parameter name="q"/>
+      <response type="html"/>
+    </search>
+  </navigation>
 
 </introspection>
 ]]>
@@ -309,7 +313,7 @@ Response from Client to Server
 <![CDATA[
 <?xml version="1.0"?>
 
-<cmui>
+<neutron>
   <response type="edit-new">
   <edit-new>
     <templates>
@@ -318,7 +322,7 @@ Response from Client to Server
     </templates>
   </edit-new>
   </response>
-</cmui>
+</neutron>
 ]]>
         </pre>
 
@@ -509,13 +513,13 @@ If the server cannot save the data, then it should return <a href="http://www.w3
         <![CDATA[
         <?xml version="1.0"?>
 
-        <cmui>
+        <neutron>
           <response type="edit-link">
           <edit-link>
             <search src="http://foo.bar/search"/>
           </edit-link>
           </response>
-        </cmui>
+        </neutron>
         ]]>
         </pre>
 
@@ -524,7 +528,7 @@ If the server cannot save the data, then it should return <a href="http://www.w3
         <![CDATA[
         <?xml version="1.0"?>
 
-        <cmui>
+        <neutron>
           <response type="edit-link">
           <edit-link>
             <simple-list>
@@ -533,7 +537,7 @@ If the server cannot save the data, then it should return <a href="http://www.w3
             </simple-list>
           </edit-link>
           </response>
-        </cmui>
+        </neutron>
         ]]>
         </pre>
 
