@@ -15,12 +15,13 @@
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
-        <dt>Revision Date: 30 June 2006</dt>
+        <dt>Revision Date: 17 August 2006</dt>
         <br/>
         <dt>Editors:</dt>
         <dd>
             Thomas Comiotto <a href="mailto:comiotto@rcfmedia.ch?subject=OSR-101">comiotto@rcfmedia.ch</a>
-           <br/> Michael Wechner <a href="mailto:michael.wechner@wyona.com?subject=OSR-101">michael.wechner@wyona.com</a>
+            <br/>
+            Michael Wechner <a href="mailto:michael.wechner@wyona.com?subject=OSR-101">michael.wechner@wyona.com</a>
             <br/>
             Guido Wesdorp <a href="mailto:guido@infrae.com?subject=OSR-101">guido@infrae.com</a>
             <br/>
@@ -64,7 +65,7 @@
         <a name="introduction"/>
         <h2>Introduction</h2>
         <p>
-Neutron is a set of XML-based commands and configuration options that allow for remote operation of Content Management Systems (CMS). Neutron provides a thin abstraction layer for what most of today's CMS offer in terms of user operations: 
+Neutron is a set of XML-based commands and configuration options that allow for remote operation of Content Management Systems (CMS). Neutron provides a thin abstraction layer for what most of today's CMS offer in terms of user operations:
 <ul>
 <li>concurrent access to resources</li>
 <li>basic file operations (move, delete)</li>
@@ -74,16 +75,16 @@ Neutron is a set of XML-based commands and configuration options that allow for 
 <li>metadata handling</li>
 <li>accessing revisions</li>
 <li>dealing with workflow stages</li>
-<li>custom authentication schemes</li> 
-<li>and more</li> 
+<li>custom authentication schemes</li>
+<li>and more</li>
 </ul>
 Neutron is typically used over HTTP. However, any other transport protocol can be used to establish a Neutron request/response chain or to retrieve Neutron configuration directives.
 </p>
 <p>
-CMS vendors usually implement their own frontend components for the operations listed above and/or implement a public API for third party component integration. Neutron is ment to be a standard that leverages  integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management solutions.  
+CMS vendors usually implement their own frontend components for the operations listed above and/or implement a public API for third party component integration. Neutron is ment to be a standard that leverages  integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management solutions.
 </p>
 <p>
-Neutron focuses on xml-based systems by providing a comprehensive set of instructions for dealing with xml-based resources. However, usage of xml-based resources is not required. Neutron also covers transactions of binary or whatever formatted data while being extensible enough for integrators to deal with the data formats of their choice. 
+Neutron focuses on xml-based systems by providing a comprehensive set of instructions for dealing with xml-based resources. However, usage of xml-based resources is not required. Neutron also covers transactions of binary or whatever formatted data while being extensible enough for integrators to deal with the data formats of their choice.
 </p>
 <p>
 For examples and usage patterns see Appendix I (Examples).
