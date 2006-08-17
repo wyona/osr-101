@@ -313,16 +313,14 @@ Response from Client to Server
 <![CDATA[
 <?xml version="1.0"?>
 
-<neutron>
-  <response type="edit-new">
+<response xmlns="http://www.wyona.org/neutron/1.0" type="edit-new">
   <edit-new>
     <templates>
       <template name="Letter" src="http://foo.bar/letter.xml"/>
       <template name="Article" src="http://foo.bar/article.xml"/>
     </templates>
   </edit-new>
-  </response>
-</neutron>
+</response>
 ]]>
         </pre>
 
@@ -513,13 +511,11 @@ If the server cannot save the data, then it should return <a href="http://www.w3
         <![CDATA[
         <?xml version="1.0"?>
 
-        <neutron>
-          <response type="edit-link">
+        <response xmlns="http://www.wyona.org/neutron/1.0" type="edit-link">
           <edit-link>
             <search src="http://foo.bar/search"/>
           </edit-link>
-          </response>
-        </neutron>
+        </response>
         ]]>
         </pre>
 
@@ -528,16 +524,14 @@ If the server cannot save the data, then it should return <a href="http://www.w3
         <![CDATA[
         <?xml version="1.0"?>
 
-        <neutron>
-          <response type="edit-link">
+        <response xmlns="http://www.wyona.org/neutron/1.0" type="edit-link">
           <edit-link>
             <simple-list>
               <link name="Archibald Alexander Leach" src="http://foo.bar/leach.pdf"/>
               <link name="Cary Grant" src="http://foor.bar/cary_grant.html"/>
             </simple-list>
           </edit-link>
-          </response>
-        </neutron>
+        </response>
         ]]>
         </pre>
 
