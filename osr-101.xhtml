@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <h1>Neutron - Content Management User Interface</h1>
+        <h1>Neutron - Remote content authoring API</h1>
         <h2>Open Specification Request 101</h2>
         <dt>Version: 0.0.1</dt>
         <br/>
@@ -32,7 +32,6 @@
         <h2>Table of contents</h2>
    <ol>
      <li>Introduction</li>
-     <li>Neutron compared to WebDAV and ATOM</li>
      <li>Key Concepts [Introspection, Authentication / Authorization, Remote File Operations, Editing - possibly Search, Revisions, Scheduling]</li>
      <li>Introspection</li>
      <ol>
@@ -65,68 +64,41 @@
         <a name="introduction"/>
         <h2>Introduction</h2>
         <p>
-Neutron is a set of XML-based commands and configuration options that allow for remote operation of Content Management Systems (CMS). Neutron provides a thin abstraction layer for what most of today's CMS offer in terms of user operations:
+Neutron is an xml-based application level protocol for remote content authoring. Neutron provides a set of commands and configuration options that allow for:
 <ul>
 <li>concurrent access to resources</li>
 <li>basic file operations (move, delete)</li>
 <li>creating resources based on templates</li>
-<li>editing based on datatype constraints</li>
-<li>editing in WYSIWYG mode</li>
+<li>linking resources to datatype definitions</li>
+<li>providing styling information for resources</li>
 <li>metadata handling</li>
 <li>accessing revisions</li>
-<li>dealing with workflow stages</li>
+<li>dealing with publishing workflow stages</li>
 <li>custom authentication schemes</li>
 <li>and more</li>
 </ul>
+</p>
+<p>
+Neutron has been been started as an effort to provide a generic API to what common Content Management Systems (CMS) provide with respect to content authoring. CMS vendors usually implement their own frontend components for content authoring and/or implement a public API for third party component integration. Neutron is ment to be an open standard that leverages integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation. Neutron also can be used for accessing lightweight content servers or datastores.
+</p>
+<p>
 Neutron is typically used over HTTP. However, any other transport protocol can be used to establish a Neutron request/response chain or to retrieve Neutron configuration directives.
 </p>
 <p>
-CMS vendors usually implement their own frontend components for the operations listed above and/or implement a public API for third party component integration. Neutron is ment to be a standard that leverages  integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation into existing content management solutions.
-</p>
-<p>
-Neutron focuses on xml-based systems by providing a comprehensive set of instructions for dealing with xml-based resources. However, usage of xml-based resources is not required. Neutron also covers transactions of binary or whatever formatted data while being extensible enough for integrators to deal with the data formats of their choice.
+Neutron provides a comprehensive set of instructions for dealing with xml-based resources. Usage of xml-based resources is not required though. Neutron also covers transactions of binary or custom formatted data while being extensible enough for integrators to deal with the data formats of their choice.
 </p>
 <p>
 For examples and usage patterns see Appendix I (Examples).
 </p>
 
+<h2>Key Concepts</h2>
 
-        <h2>Neutron compared to WebDAV and Atom</h2>
-        <p>
-          <a href="http://www.webdav.org">WebDAV</a> (<a href="http://www.webdav.org/specs/rfc2518.html">Spec</a>) may well form the basis for
-          client-server communication in a typical OSR-101 setup. DAV provides a
-          basic (although somewhat low-level) API for managing content on servers,
-          and is already available on most modern webservers. Where required, the HTTP
-          protocol can be extended even further to provide higher level functionality,
-          or functionality that is simply not provided by DAV (of course another
-          implementation is also possible).
-        </p>
-        <p>
-          Some of the features described by OSR-101 are already defined by some DAV-
-          related consortium as an extension to DAV, and are either accepted as a
-          standard or in draft. Of these proposals and standards, DeltaV (which
-          provides a versioning API), DASL (provides a searching API) and the DAV ACL
-          (Access Control List) extensions are probably the most useful ones. However,
-          the status of the extensions varies from accepted and implemented (DeltaV)
-          to draft revision 0 (ACL extension) and it may therefore be that we can not
-          implement the API as intended. A decision will need to be made about whether
-          OSR-101 is going to build on those extensions at all, and if so, what to do
-          with grey areas in the proposals/standards.
-        </p>
-        <p>
-          Also see the Universal Content Broker Project
-          (<a href="http://ucb.openoffice.org/">http://ucb.openoffice.org/</a>) ...
-          also see the
-          <a href="http://bitworking.org/projects/atom/">Atom Protocol</a> (or
-          <a href="http://webservices.xml.com/lpt/a/ws/2003/08/05/salz.html">Atom
-          API</a> or <a href="http://www.intertwingly.net/wiki/pie/WebDav">Relationship between Atom and WebDAV</a>).
-        </p>
 
-        <p>
-          It might also be interesting to follow the development of the OpenUsability
-          project <a href="http://openusability.org/projects/cms-uig/">User Interface
-          Guidelines for Content Management Systems</a>.
-        </p>
+
+
+
+
+
 
         <a name="introspection"/>
         <h2>Introspection</h2>
