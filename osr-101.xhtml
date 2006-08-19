@@ -88,6 +88,9 @@ Neutron is typically used over HTTP. However, any other transport protocol can b
 Neutron provides a comprehensive set of instructions for dealing with xml-based resources. Usage of xml-based resources is not required though. Neutron also covers transactions of binary or custom formatted data while being extensible enough for integrators to deal with the data formats of their choice.
 </p>
 <p>
+Compared to other open content authoring standards Neutron is higher-level than WebDAV and lower-level that ATOM, to name two prominent examples in that field. While ATOM is targeted at content syndication Neutron provides a generic API to content authoring. Speaking of WebDAV, Neutron is not based on WebDAV mainly for two reasons: Neutron is not exclusively targeted at handling web resources. Even if it were, Neutron would have been hard to implement on top of WebDAV, because WebDAV has somewhat rigid collection handling and does not support mapping remote methods to arbitrary uri commands.
+</p>
+<p>
 For examples and usage patterns see Appendix I (Examples).
 </p>
 
