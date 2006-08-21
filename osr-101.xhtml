@@ -109,7 +109,7 @@ Neutron defines a set of methods and corresponding exception types for operating
   <dt>checkin</dt><dd>convenience method for save + unlock</dd>
 </dl>
 
-These methods can be mapped to commandURLs of choice. If a content server must adhere to some url namespace policy, Neutron has been designed to be flexible enough to support it.  
+These methods can be mapped to arbitrary commandURLs. If a content server must adhere to some url namespace policy, Neutron has been designed to be flexible enough to support it.  
 </p>
 <h4>
 Example - Saving a resource over HTTP using PUT</h4>
@@ -169,7 +169,7 @@ Note that using an introspection link referring to an introspection file is only
 
 <h3>Linking resources to datatype definitions</h3>
 <p>
-Neutron supports linking resources to datatype definitions. With regards to XML-based resources, this information is often not self-contained but dealt with by the content server. Neutron has support for three datatype languages: W3C schema, relaxNG and Schematron. Linking a resource to a datatype definition is achieved by adding a schema element to the introspection file. 
+Neutron supports linking resources to datatype definitions. With regards to XML-based resources, this information is often not self-contained but dealt with by the content server while still being needed by client-side editing components. Neutron has support for three datatype languages: W3C schema, relaxNG and Schematron. Linking a resource to a datatype definition is achieved by adding a schema element to the introspection file. 
 </p>
 <h4>Example - Linking a resource to its datatype definition</h4>
 <pre><![CDATA[
@@ -184,7 +184,7 @@ Neutron supports linking resources to datatype definitions. With regards to XML-
 Neutron supports a set of directives targeted at client-side view configuration. While these directives are somewhat XML-biased they are extendable to support data formats of choice. As noted earlier, content servers usually process resources by adding dynamic document parts like menus and headers or by resolving inclusion directives for instance. Moreover, XML-based systems often use custom datatypes that are transformed to xhtml before being served to end-users. With regards to authoring, editing pre-processed static resources based on their mime-types (as supported by most other content authoring protocols out there) is fine as far as source mode editing is conscerned. However, when considering WYSIWYG-editing (which is what content authors usually prefer) additional information has to be provided to the client-side application:
 <ul>
  <li>directives about how to style the resource</li>
- <li>providing document parts that result from server side processing (header, menus, footer, ..) with regards to WYSIWYG editing</li>
+ <li>document parts that result from server side processing (header, menus, footer, ..) with regards to WYSIWYG editing</li>
 </ul>
 Neutron has support for both aspects while keeping integration cost as low as possible by leveraging reuse of existing server side code. In terms of styling a resource two modes are supported: styling by CSS and styling by XSLT. To declare a stylesheet for a given resource a style element has to be added to the introspection file.
 
