@@ -234,33 +234,47 @@ Document parts needed for WYSIWYG-editing but resulting form server side process
 ]]>
 </pre>
 
-<h3>Resource Set</h3>
+<p>
+View templates can be shared between multiple resources. This is needed in situations where a processed resource consists of several otherwise unrelated resources, for instance a xml-based resource being transformed to xhtml after having aggregated a couple of rss-feeds. A view template is considered a shared template if the template directives of individual  resources listed in the introspection file point to the same view template. Shared view templates need to include all relevant resources by providing xi:include directives for all those resources.
+</p>
+<h4>Example - sharing a View template</h4>
+<pre><![CDATA[
+<introspection>
+  <edit>
+    <open url="page.xml"/>
+    <style mode="xslt" url="page.xsl">
+      <template url="page.xml"/>
+    </style>
+  </edit>
+  <edit>
+    <open url="feed.xml"/>
+    <style>
+      <template url="page.xml"/>
+    </style>
+  </edit>
+</introspection>
+]]>
+</pre>
 
+<h3>Resource Sets</h3>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>
+Neutron supports synchronized transactions of multiple resources by adding them to a resource set. A method call on any member of a resource set leads to executing the same method on all other members of the resource set. A method call on any member of a resource set can only be considered successful if the same method can be executed successfully on any other member of the resource set and otherwise will be reverted. A typical usecase for a resource set is when dealing with metadata contained in a seperate resource. For instance, given a resource set that contains resource A and another resource  B that holds metadata of A, Neutron enabled applications can make sure that document and metadata are opened, locked, saved, unlocked together. 
+</p>
+<h4>Example - Resource set</h4>
+<pre><![CDATA[
+<introspection>
+  <resource-set>
+    <resource url="hello.xml">
+      <save url="hello.xml?neutron.cmd=save"/>
+    </resource>
+    <resource url="hello.meta">
+      <save url="hello.meta?neutron.cmd=save"/>
+    </resource>
+  </resource-set>
+</introspection>
+]]>
+</pre>
 
 
 
