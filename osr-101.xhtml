@@ -32,7 +32,7 @@
         <h2>Table of contents</h2>
    <ol>
      <li>Introduction</li>
-     <li>Key Concepts [Introspection, Authentication / Authorization, Remote File Operations, Editing - possibly Search, Revisions, Scheduling]</li>
+     <li>Basic terms and concepts</li>
      <li>Introspection</li>
      <ol>
        <li>Introspection Link</li>
@@ -79,22 +79,184 @@ Neutron is an xml-based application level protocol for remote content authoring.
 </ul>
 </p>
 <p>
-Neutron has been been started as an effort to provide a generic API to what common Content Management Systems (CMS) provide with respect to content authoring. CMS vendors usually implement their own frontend components for content authoring and/or implement a public API for third party component integration. Neutron is ment to be an open standard that leverages integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation. While targeted at large scale content management systems, Neutron can also be used for accessing lightweight content repositories, datastores or remote file systems.
+Neutron has been been started as an effort to provide a generic API to what common Content Management Systems (CMS) support with respect to content authoring. CMS vendors usually implement their own frontend components for content authoring and/or implement a public API for third party component integration. Neutron is ment to be an open standard that leverages integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation. While targeted at large scale content management systems, Neutron can also be used for accessing lightweight content repositories, datastores or remote file systems.
 </p>
 <p>
-Neutron is typically used over HTTP. However, any other transport protocol can be used to establish a Neutron request/response chain or to retrieve Neutron configuration directives.
+Neutron is typically used over HTTP. However, Neutron can be run on top of any other transport protocol if feasable.
 </p>
 <p>
 Neutron provides a comprehensive set of instructions for dealing with xml-based resources. Usage of xml-based resources is not required though. Neutron also covers transactions of binary or custom formatted data while being extensible enough for integrators to deal with the data formats of their choice.
 </p>
 <p>
-Compared to other open content authoring standards Neutron is higher-level than WebDAV and lower-level that ATOM, to name two prominent examples in that field. While ATOM is targeted at content syndication Neutron provides a generic API to content authoring. Speaking of WebDAV, Neutron is not based on WebDAV mainly for two reasons: Neutron is not exclusively targeted at handling web resources. Even if it were, Neutron would have been hard to implement on top of WebDAV, because WebDAV has somewhat rigid collection handling and does not support mapping remote methods to arbitrary uri commands.
+Compared to other open content authoring standards Neutron is higher-level than WebDAV and lower-level that ATOM, to name two prominent examples in that field. While WebDAV operates on Web resources Neutron operates on content servers that might expose their resources to the web. While ATOM is targeted at content syndication Neutron provides a generic API to content authoring. 
 </p>
 <p>
 For examples and usage patterns see Appendix I (Examples).
 </p>
 
-<h2>Key Concepts</h2>
+<h2>Basic terms and concepts</h2>
+
+<h3>Neutron Methods</h3>
+<p>
+Neutron defines a set of methods and corresponding exception types for operating on remote resources:
+
+<dl>
+  <dt>open</dt>
+  <dt>save</dt>
+  <dt>lock</dt>
+  <dt>unlock</dt>
+  <dt>checkout</dt><dd>Convenience Mehod for open + lock</dd>
+  <dt>checkin</dt><dd>convenience method for save + unlock</dd>
+</dl>
+
+These methods can be mapped to commandURLs of choice. If a content server must adhere to some url namespace policy, Neutron has been designed to be flexible enough to support it.  
+</p>
+<h4>
+Example - Saving a resource over HTTP using PUT</h4>
+<p>
+Method: save<br/>
+Integrator specific commandURL: http://foo.bar.com/foo.html?neutron.cmd=save<br/>
+Neutron representation: 
+<![CDATA[
+<save uri="http://foo.bar.com/foo.html?neutron.cmd=open" httpMethod="PUT"/>
+]]>
+<br/>
+</p>
+<h4>Example - Saving a resource over HTTP by using POST. Single Protocol Endpoint</h4>
+<p>
+Method: save<br/>
+Integrator specific commandURL: http://foo.bar.com/neutron?cmd=save&#38;file=somefile<br/>
+Neutron representation: 
+<![CDATA[
+<save uri="http://foo.bar.com/neutron?cmd=save&file=somefile" httpMethod="POST"/>
+]]>
+<br/>
+</p>
+
+<h3>Initiating a Neutron request/response chain</h3>
+
+A Neutron request/response chain is initiated by issuing a set of configuration directives that contain:
+
+<ul>
+  <li>a set of commandURLs for the methods supported by the content server</li>
+  <li>datatype definitions for the requested resource(s) - if available</li>
+  <li>hinting directives regarding the preferred editing mode of the resource (forms based, WYSIWYG), including data that is needed to render the corresponding client-side application components. </li>
+</ul>
+
+These configuration directives are contained in a Neutron Introspection File and provided by the content server.
+
+<h4>Example - Introspection file</h4>
+<pre><![CDATA[<introspection>
+  <edit mode="styled">
+    <open url="http://www.foo.bar.com/hello.xml"/>
+    <save url="http://www.foo.bar.com/hello.xml?neutron.cmd=save" httpMethod="PUT"/>
+    <style url="http://www.foo.bar.com/hello.xsl"/>
+    <schema url="http://www.foo.bar.com/hello.xsd"/>
+  </edit>
+</introspection>]]></pre>
+<p>
+The term "introspection file" accounts for the fact that remote resources are usually not self-contained in terms of data that is needed to edit them. This not only conscerns remote methods to access the resource. Resources might also lack embedded links to relevant datatype definitions and to styling information needed to edit them in WYSIWYG-mode. Further on, most content servers process resources before making them available to end-users. For instance, Web-based content management systems usually add document headers, navigation menus, resolve include directives on the fly etc. before sending the processed resource out to page visitors. Given that processed resources are the reference point of choice for content authoring, they are also a good entry point for editing the underlying static resources in terms of user interaction. Neutron supports embedding a link within a processed resource that refers to an introspection file, therefore allowing for initialization of a Neutron request/response chain by introspecting a processed resource. The notion of such introspection links is as follows:
+<pre><![CDATA[
+<link rel="application/neutron+xml" href="urlToIntrospectionData.xml"/>
+]]></pre>
+</p>
+<p>
+Introspection links allow for browsing a website or document repository for instance, gathering information about how to edit the underlying data behind the scenes and let content authors initiate a neutron request/response chain on demand. 
+</p>
+<p>
+Note that using an introspection link referring to an introspection file is only one way to initiate a Neutron request/response chain. Introspection files can also be provided as part of an Neutron archive (see below) or be located by convention of choice.     
+</p>
+
+<h3>Linking resources to datatype definitions</h3>
+<p>
+Neutron supports linking resources to datatype definitions. With regards to XML-based resources, this information is often not self-contained but dealt with by the content server. Neutron has support for three datatype languages: W3C schema, relaxNG and Schematron. Linking a resource to a datatype definition is achieved by adding a schema element to the introspection file. 
+</p>
+<h4>Example - Linking a resource to its datatype definition</h4>
+<pre><![CDATA[
+<edit>
+<schema type="relaxNG" url="aRelaxNGFile.rng"/>
+</edit>
+]]></pre>
+
+<h3>Editing modes and styling information</h3>
+
+<p>
+Neutron supports a set of directives targeted at client-side view configuration. While these directives are somewhat XML-biased they are extendable to support data formats of choice. As noted earlier, content servers usually process resources by adding dynamic document parts like menus and headers or by resolving inclusion directives for instance. Moreover, XML-based systems often use custom datatypes that are transformed to xhtml before being served to end-users. With regards to authoring, editing pre-processed static resources based on their mime-types (as supported by most other content authoring protocols out there) is fine as far as source mode editing is conscerned. However, when considering WYSIWYG-editing (which is what content authors usually prefer) additional information has to be provided to the client-side application:
+<ul>
+ <li>directives about how to style the resource</li>
+ <li>providing document parts that result from server side processing (header, menus, footer, ..) with regards to WYSIWYG editing</li>
+</ul>
+Neutron has support for both aspects while keeping integration cost as low as possible by leveraging reuse of existing server side code. In terms of styling a resource two modes are supported: styling by CSS and styling by XSLT. To declare a stylesheet for a given resource a style element has to be added to the introspection file.
+
+<h4>Example - Declaring a css style for a resource</h4>
+<pre><![CDATA[
+<edit>
+  <style type="css" url="aCSSfile.css"/>
+</edit> 
+]]></pre>
+
+<h4>Example - Declaring a xslt style for a resource</h4>
+<pre><![CDATA[
+<edit>
+  <style type="xslt" url="aXSLTFile.xsl"/>
+</edit>]]>
+</pre>
+</p>
+<p>
+Document parts needed for WYSIWYG-editing but resulting form server side processing such as headers, menus, footers etc. are provided to the client-side application by declaring a view template. View templates contain xi:include directives for inclusion of editable resources. A view template typically consist of custom data surrounding xi:include directives that reference static and therfore editable resources. Styling directives given in the introspection file are ment to be applied to the view template (if present) after the xi:include directives contained have been resolved by the client side application. 
+</p>
+<h4>Example - View Template</h4>
+<pre><![CDATA[
+<page>
+  <head>
+    <title>A document title</title>
+  </head>
+  <menu>
+    <item uri="index.html"/>
+    <item uri="hello.html" selected="selected"/>
+  </menu>
+  <content>
+    <xi:include href="source.xml"/>
+  </content>
+</page>
+]]>
+</pre>
+<h4>Example - Declaring a View Template in a Introspection File</h4>
+<pre><![CDATA[
+<introspection>
+  <edit>
+    <open url="source.xml"/>
+    <style mode="xslt" url="page.xsl">
+      <template url="viewtemplate.xml"/>
+    </style>
+  </edit>
+</introspection>
+]]>
+</pre>
+
+<h3>Resource Set</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
