@@ -109,23 +109,23 @@ Neutron defines a set of methods and corresponding exception types for operating
   <dt>checkin</dt><dd>convenience method for save + unlock</dd>
 </dl>
 
-These methods can be mapped to arbitrary commandURLs. If a content server must adhere to some url namespace policy, Neutron has been designed to be flexible enough to support it.  
+These methods can be assigned to arbitrary commandURLs. If a content server must adhere to some url namespace policy, Neutron has been designed to be flexible enough to support it.  
 </p>
 <h4>
 Example - Saving a resource over HTTP using PUT</h4>
 <p>
 Method: save<br/>
-Integrator specific commandURL: http://foo.bar.com/foo.html?neutron.cmd=save<br/>
+CommandURL: http://foo.bar.com/foo.html?neutron.cmd=save<br/>
 Neutron representation: 
 <![CDATA[
 <save uri="http://foo.bar.com/foo.html?neutron.cmd=open" httpMethod="PUT"/>
 ]]>
 <br/>
 </p>
-<h4>Example - Saving a resource over HTTP by using POST. Single Protocol Endpoint</h4>
+<h4>Example - Saving a resource over HTTP by using POST. Single service endpoint</h4>
 <p>
 Method: save<br/>
-Integrator specific commandURL: http://foo.bar.com/neutron?cmd=save&#38;file=somefile<br/>
+CommandURL: http://foo.bar.com/neutron?cmd=save&#38;file=somefile<br/>
 Neutron representation: 
 <![CDATA[
 <save uri="http://foo.bar.com/neutron?cmd=save&file=somefile" httpMethod="POST"/>
@@ -138,7 +138,7 @@ Neutron representation:
 A Neutron request/response chain is initiated by issuing a set of configuration directives that contain:
 
 <ul>
-  <li>a set of commandURLs for the methods supported by the content server</li>
+  <li>commandURLs for the methods supported by the content server</li>
   <li>datatype definitions for the requested resource(s) - if available</li>
   <li>hinting directives regarding the preferred editing mode of the resource (forms based, WYSIWYG), including data that is needed to render the corresponding client-side application components. </li>
 </ul>
@@ -164,12 +164,12 @@ The term "introspection file" accounts for the fact that remote resources are us
 Introspection links allow for browsing a website or document repository for instance, gathering information about how to edit the underlying data behind the scenes and let content authors initiate a neutron request/response chain on demand. 
 </p>
 <p>
-Note that using an introspection link referring to an introspection file is only one way to initiate a Neutron request/response chain. Introspection files can also be provided as part of an Neutron archive (see below) or be located by convention of choice.     
+Note that using an introspection link that refers to an introspection file is only one way to initiate a Neutron request/response chain. Introspection files can also be provided as part of an Neutron archive (see below) or simply by letting users locate them directly from within a Neutron enabled client.      
 </p>
 
 <h3>Linking resources to datatype definitions</h3>
 <p>
-Neutron supports linking resources to datatype definitions. With regards to XML-based resources, this information is often not self-contained but dealt with by the content server while still being needed by client-side editing components. Neutron has support for three datatype languages: W3C schema, relaxNG and Schematron. Linking a resource to a datatype definition is achieved by adding a schema element to the introspection file. 
+Linking resources to datatype definitions is crucial for allowing clients to validate the resource during the authoring process or to provide for datatype-guided content insertion. With regards to XML-based resources, this information is often not self-contained but dealt with by the content server. Linking a resource to a datatype definition is achieved by adding a schema element to the introspection file. Neutron has support for three datatype languages: W3C Schema, RelaxNG and Schematron. 
 </p>
 <h4>Example - Linking a resource to its datatype definition</h4>
 <pre><![CDATA[
@@ -178,7 +178,7 @@ Neutron supports linking resources to datatype definitions. With regards to XML-
 </edit>
 ]]></pre>
 
-<h3>Editing modes and styling information</h3>
+<h3>Edit modes and styling information</h3>
 
 <p>
 Neutron supports a set of directives targeted at client-side view configuration. While these directives are somewhat XML-biased they are extendable to support data formats of choice. As noted earlier, content servers usually process resources by adding dynamic document parts like menus and headers or by resolving inclusion directives for instance. Moreover, XML-based systems often use custom datatypes that are transformed to xhtml before being served to end-users. With regards to authoring, editing pre-processed static resources based on their mime-types (as supported by most other content authoring protocols out there) is fine as far as source mode editing is conscerned. However, when considering WYSIWYG-editing (which is what content authors usually prefer) additional information has to be provided to the client-side application:
@@ -216,7 +216,7 @@ Document parts needed for WYSIWYG-editing but resulting form server side process
     <item uri="hello.html" selected="selected"/>
   </menu>
   <content>
-    <xi:include href="source.xml"/>
+    <xi:include href="hello.xml"/>
   </content>
 </page>
 ]]>
@@ -225,9 +225,9 @@ Document parts needed for WYSIWYG-editing but resulting form server side process
 <pre><![CDATA[
 <introspection>
   <edit>
-    <open url="source.xml"/>
+    <open url="hello.xml"/>
     <style mode="xslt" url="page.xsl">
-      <template url="viewtemplate.xml"/>
+      <template url="hello-template.xml"/>
     </style>
   </edit>
 </introspection>
@@ -235,21 +235,42 @@ Document parts needed for WYSIWYG-editing but resulting form server side process
 </pre>
 
 <p>
-View templates can be shared between multiple resources. This is needed in situations where a processed resource consists of several otherwise unrelated resources, for instance a xml-based resource being transformed to xhtml after having aggregated a couple of rss-feeds. A view template is considered a shared template if the template directives of individual  resources listed in the introspection file point to the same view template. Shared view templates need to include all relevant resources by providing xi:include directives for all those resources.
+View templates can be shared between multiple resources. This is needed in situations where a processed resource consists of several otherwise unrelated resources - for instance a xml-based resource being transformed to a single html page after having aggregated a couple of rss-feeds. A view template is considered a shared template if the template directives of individual  resources listed in the introspection file point to the same view template. Shared view templates need to include all relevant resources by providing xi:include directives for all those resources.
 </p>
+
+<h4>Example - shared View template</h4>
+<pre><![CDATA[
+<page>
+  <head>
+    <title>A document containinig a rss feed</title>
+  </head>
+  <menu>
+    <item uri="index.html"/>
+    <item uri="hello.html" selected="selected"/>
+  </menu>
+  <sidebar>
+    <xi:include href="feed.xml"/>
+  </sidebar>
+  <content>
+    <xi:include href="hello.xml"/>
+  </content>
+</page>
+]]>
+</pre>
+
 <h4>Example - sharing a View template</h4>
 <pre><![CDATA[
 <introspection>
   <edit>
-    <open url="page.xml"/>
+    <open url="hello.xml"/>
     <style mode="xslt" url="page.xsl">
-      <template url="page.xml"/>
+      <template url="hellotemplate.xml"/>
     </style>
   </edit>
   <edit>
     <open url="feed.xml"/>
     <style>
-      <template url="page.xml"/>
+      <template url="hellotemplate.xml"/>
     </style>
   </edit>
 </introspection>
