@@ -1,6 +1,10 @@
+<<<<<<< .mine
+Neutron is a vendor-neutral, open, XML-based Content Management System interface, enabling client applications to access CMS in a programmatical way. Neutron offers introspection, file operations and workflow functionality.
+=======
  
 NEUTRON - Open Content Management User Interface
 ------------------------------------------------
+>>>>>>> .r14417
 
 
 Neutron is a vendor-neutral, open, XML-based Content Management User Interface, enabling client applications to access Content Management Systems in a programmatical way. Neutron offers introspection, resource operations and other content management functionality.
