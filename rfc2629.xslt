@@ -1423,7 +1423,7 @@
 
   <xhtml:html lang="{$lang}" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
     <head>
-      <link rel="neutron-introspection" type="application/neutron" href="introspection.xml"/>
+      <link rel="neutron-introspection" type="application/neutron+xml" href="introspection-osr-101.xml"/>
       <title><xsl:value-of select="front/title" /></title>
       <style type="text/css" title="Xml2Rfc (sans serif)">
         <xsl:call-template name="insertCss" />

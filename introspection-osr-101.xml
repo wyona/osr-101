@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <introspection xmlns="http://www.wyona.org/neutron/1.0">
-<edit mime-type="application/xhtml+xml" name="Neutron Specification">
-  <open url="osr-101.xhtml" method="GET"/>
-  <save url="osr-101.xhtml?yanel.resource.usecase=save" method="PUT"/>
+<edit mime-type="application/xml" name="Neutron Protocol Specification">
+  <checkout url="draft-neutron-protocol-v0.xml?yanel.resource.usecase=checkout" method="GET"/>
+  <checkin  url="draft-neutron-protocol-v0.xml?yanel.resource.usecase=checkin" method="PUT"/>
 </edit>
 </introspection>
