@@ -124,6 +124,110 @@
       <t>Compared to other open content authoring standards Neutron is higher-level than WebDAV and lower-level that ATOM, to name two prominent examples in that field. While WebDAV operates on Web resources Neutron operates on content servers that might expose their resources to the web. While ATOM is targeted at content syndication Neutron provides a generic API to content authoring.</t>
       <t>For examples and usage patterns see <xref target="examples"/>.</t>
     </section>
+ 
+    <section title="Auto-Discovery of Introspection">
+      <t>
+        A client supporting HTML (as for instance <eref target="http://www.yulup.org">Yulup</eref>) can discover
+        the introspection through a neutron specific link within the HTML head.
+      </t>
+      <section title="Example">
+      <figure>
+        <artwork>
+          &lt;html>
+            &lt;head>
+              &lt;link rel="neutron-introspection" type="application/neutron+xml" href="introspection-hello-world.xml"/>
+              &lt;title>Hello World&lt;/title>
+              ...
+        </artwork>
+      </figure>
+      </section>
+    </section>
+
+    <section title="Editing Resources">
+      <section title="Opening and Saving without Locking">
+        <section title="Introspection Example">
+        <figure>
+          <artwork>
+            &lt;introspection>
+              &lt;edit mime-type="application/xhtml+xml" name="Homepage">
+                &lt;open url="index.xhtml" method="GET"/>
+                &lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
+              &lt;/edit>
+            &lt;/introspection>
+          </artwork>
+        </figure>
+        </section>
+
+        <section title="Opening a Resource">
+          <t>To open a resource, clients use the URL and METHOD specified within the introspection.</t>
+        </section>
+
+        <section title="Saving a Resource">
+          <t>
+            To save a resource, clients use the URL and METHOD specified within the introspection.
+          </t>
+          <t>
+            The server responds with a status code of 200.
+          </t>
+        </section>
+      </section>
+
+      <section title="Opening and Saving with Locking">
+        <section title="Introspection Example">
+        <figure>
+          <artwork>
+           &lt;introspection>
+             &lt;edit mime-type="application/xhtml+xml" name="Homepage">
+               &lt;checkout url="index.xhtml?yanel.resource.usecase=checkout" method="GET"/>
+               &lt;checkin url="index.xhtml?yanel.resource.usecase=checkin" method="PUT"/>
+             &lt;/edit>
+           &lt;/introspection>
+          </artwork>
+        </figure>
+        </section>
+
+        <section title="Opening a Resource">
+          <t>
+            To open a resource, clients use the URL and METHOD specified within the introspection.
+          </t>
+          <t>
+            The server acquires a lock and responds with the data of the resource.
+          </t>
+        </section>
+
+        <section title="Saving a Resource">
+          <t>
+            To save a resource, clients use the URL and METHOD specified within the introspection.
+          </t>
+          <t>
+            The server releases the previously acquired lock and responds with a status code of 200.
+          </t>
+        </section>
+      </section>
+    </section>
+
+    <section title="Creating Resources">
+      <t>TBD</t>
+      <section title="Introspection Example">
+        <figure>
+          <artwork>
+            &lt;introspection xmlns="http://www.wyona.org/neutron/1.0">
+              &lt;navigation>
+                &lt;sitetree href="sitetree.xml" method="GET"/>
+              &lt;/navigation>
+            &lt;/introspection>
+          </artwork>
+        </figure>
+      </section>
+    </section>
+
+    <section title="Deleting Resources">
+      <t>TBD</t>
+    </section>
+
+    <section title="NAR - Neutron Archive">
+      <t>TBD</t>
+    </section>
 
     <section title="Notational Conventions">
       <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119"/>.</t>
