@@ -464,7 +464,10 @@
 
 <xsl:strip-space elements="back front list middle rfc section"/>                
                 
+<!--
 <xsl:output method="html" encoding="iso-8859-1" version="4.0" doctype-public="-//W3C//DTD HTML 4.01//EN" indent="no"/>
+-->
+<xsl:output method="xhtml" encoding="UTF-8"/>
 
 <!-- process some of the processing instructions supported by Marshall T. Rose's
      xml2rfc sofware, see <http://xml.resource.org/> -->
@@ -1418,7 +1421,7 @@
     <xsl:call-template name="get-lang" />
   </xsl:variable>
 
-  <html lang="{$lang}">
+  <xhtml:html lang="{$lang}" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <link rel="neutron-introspection" type="application/neutron" href="introspection.xml"/>
       <title><xsl:value-of select="front/title" /></title>
@@ -1502,7 +1505,7 @@
       <xsl:apply-templates select="middle" />
       <xsl:apply-templates select="back" />
     </body>
-  </html>
+  </xhtml:html>
 </xsl:template>               
 
 
