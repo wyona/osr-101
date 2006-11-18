@@ -1420,6 +1420,7 @@
 
   <html lang="{$lang}">
     <head>
+      <link rel="neutron-introspection" type="application/neutron" href="introspection.xml"/>
       <title><xsl:value-of select="front/title" /></title>
       <style type="text/css" title="Xml2Rfc (sans serif)">
         <xsl:call-template name="insertCss" />
