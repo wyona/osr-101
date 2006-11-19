@@ -3,10 +3,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link href="introspection-index.xml" type="application/neutron+xml" rel="neutron-introspection" />
+<title>Neutron Protocol</title>
+<style>
+#navigation {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d8dfea;
+  padding: 10px;
+}
+
+#content {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d8dfea;
+  padding: 10px;
+}
+</style>
 </head>
 <body>
-<h1>Neutron - Content Management User Interface</h1>
+<h1>Neutron Protocol - Content Management User Interface</h1>
 <h2>Open Specification Request 101</h2>
+
+<table _moz_resizing="true" border="0">
+<tbody><tr>
+<td valign="top" id="navigation">
+<a href="index.html">Homepage</a>
+<br/>
+<a href="#amendments_tbd">Amendments&#160;TBD</a>
+<br/>
+<a href="#mailing_list">Mailing List</a>
+<br/>
+<a href="#applications">Applications</a>
+<br/>
+<a href="#subversion">Subversion</a>
+</td>
+
+<td>
+ 
+</td>
+
+<td valign="top" id="content">
+<h3>About</h3>
+<p>
+The Neutron Protocol (NP) is an XML-based application-level protocol to abstractize the
+content management user interface from the server side implementation of a content management system
+respecitively framework. A graphical overview can be found <a href="FutureCMSArchitecture.pdf">here</a>.
+The Neutron Protocol is closely related to <a href="http://www.webdav.org">WebDAV</a> and <a href="http://bitworking.org/projects/atom/">APP</a>.
+</p>
 
 <h3>The latest version</h3>
 <p>
@@ -25,13 +68,17 @@ The previous versions of the draft are available:
 <a href="osr-101.xhtml">Original Draft Specification</a>
 </p>
 
-<h3>Misc</h3>
+<a name="amendments_tbd">
+</a><h3><a _moz-rs-heading="" name="amendments_tbd">Amendments TBD</a></h3>
 <p>
-<a href="FutureCMSArchitecture.pdf">Diagram</a>
-</p>
+</p><ul>
+<a name="amendments_tbd">  </a><li><a name="amendments_tbd">Versions of Resources</a></li>
+<a name="amendments_tbd">  </a><li><a name="amendments_tbd">Workflow</a></li>
+</ul>
 
-<h3>"Applications" supporting Neutron/OSR-101</h3>
-<h4>Client Software</h4>
+<a name="applications">
+</a><h3><a _moz-rs-heading="" name="applications">"Applications" supporting Neutron/OSR-101</a></h3>
+<h4><a _moz-rs-heading="" name="applications">Client Software</a></h4>
 <ul>
 <li><a href="http://www.yulup.org">Yulup</a></li>
 <li><a href="http://svn.wyona.com/repos/public/mozilla-thunderbird/">CMSConnector</a></li>
@@ -43,11 +90,14 @@ The previous versions of the draft are available:
 <li><a href="http://lenya.apache.org">Apache Lenya</a></li>
 </ul>
 
-<h3>Mailing List</h3>
+<a name="mailing_list">
+</a><h3><a _moz-rs-heading="" name="mailing_list">Mailing List</a></h3>
 <a href="http://wyona.com/cgi-bin/mailman/listinfo/osr-101/">Subscribe/Unsubscribe</a>
 <br/>
 <a href="http://wyona.com/pipermail/osr-101/">Archives</a>
 
+
+<a name="subversion"/>
 <h3>Subversion</h3>
 <h4>Anonymous</h4>
 <p>
@@ -59,6 +109,9 @@ Username: <i>anonymous</i>, Password: <i>anonymous</i>
 <p>
 svn co --username USERNAME https://svn.wyona.com/repos/public/osr-101/trunk/ osr-101
 </p>
+</td>
+</tr>
+</tbody></table>
 
 </body>
 </html>
