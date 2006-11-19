@@ -83,7 +83,7 @@
     </author>
 
     <author initials="T.C." surname="Comiotto" fullname="Thomas Comiotto" role="editor">
-      <organization>Unicom</organization>
+      <organization>Unicom (University of Zurich)</organization>
       <address>
         <phone>+41 44 634 51 31</phone>
         <email>thomas.comiotto@unicom.unizh.ch</email>
@@ -93,7 +93,7 @@
     <date day="17" month="November" year="2006"/>
 
     <abstract>
-      <t>The Neutron Protocol is an xml-based application level protocol for remote content authoring. Neutron provides a generic API to what common Content Management Systems (CMS) support with respect to content authoring.</t>
+      <t>The Neutron Protocol is an XML-based application-level protocol for remote content authoring. Neutron provides a generic API to what common Content Management Systems (CMS) support with respect to content authoring.</t>
     </abstract>
 
     <note title="Editorial Note">
