@@ -90,7 +90,7 @@
       </address>
     </author>
 
-    <date day="17" month="November" year="2006"/>
+    <date day="23" month="November" year="2006"/>
 
     <abstract>
       <t>The Neutron Protocol is an XML-based application-level protocol for remote content authoring. Neutron provides a generic API to what common Content Management Systems (CMS) support with respect to content authoring.</t>
@@ -133,11 +133,14 @@
       <section title="Example">
       <figure>
         <artwork>
-          &lt;html>
-            &lt;head>
-              &lt;link rel="neutron-introspection" type="application/neutron+xml" href="introspection-hello-world.xml"/>
-              &lt;title>Hello World&lt;/title>
-              ...
+&lt;html>
+  &lt;head>
+    &lt;link rel="neutron-introspection" type="application/neutron+xml" href="introspection-hello-world.xml"/>
+    &lt;title>Hello World&lt;/title>
+    ...
+  &lt;/head>
+  ...
+&lt;/html>
         </artwork>
       </figure>
       </section>
@@ -148,12 +151,14 @@
         <section title="Introspection Example">
         <figure>
           <artwork>
-            &lt;introspection>
-              &lt;edit mime-type="application/xhtml+xml" name="Homepage">
-                &lt;open url="index.xhtml" method="GET"/>
-                &lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
-              &lt;/edit>
-            &lt;/introspection>
+&lt;?xml version="1.0"?>
+
+&lt;introspection>
+  &lt;edit mime-type="application/xhtml+xml" name="Homepage">
+    &lt;open url="index.xhtml" method="GET"/>
+    &lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
+  &lt;/edit>
+&lt;/introspection>
           </artwork>
         </figure>
         </section>
@@ -176,12 +181,14 @@
         <section title="Introspection Example">
         <figure>
           <artwork>
-           &lt;introspection>
-             &lt;edit mime-type="application/xhtml+xml" name="Homepage">
-               &lt;checkout url="index.xhtml?yanel.resource.usecase=checkout" method="GET"/>
-               &lt;checkin url="index.xhtml?yanel.resource.usecase=checkin" method="PUT"/>
-             &lt;/edit>
-           &lt;/introspection>
+&lt;?xml version="1.0"?>
+
+&lt;introspection>
+  &lt;edit mime-type="application/xhtml+xml" name="Homepage">
+    &lt;checkout url="index.xhtml?yanel.resource.usecase=checkout" method="GET"/>
+    &lt;checkin url="index.xhtml?yanel.resource.usecase=checkin" method="PUT"/>
+  &lt;/edit>
+&lt;/introspection>
           </artwork>
         </figure>
         </section>
@@ -211,11 +218,13 @@
       <section title="Introspection Example">
         <figure>
           <artwork>
-            &lt;introspection xmlns="http://www.wyona.org/neutron/1.0">
-              &lt;navigation>
-                &lt;sitetree href="sitetree.xml" method="GET"/>
-              &lt;/navigation>
-            &lt;/introspection>
+&lt;?xml version="1.0"?>
+
+&lt;introspection xmlns="http://www.wyona.org/neutron/1.0">
+  &lt;navigation>
+    &lt;sitetree href="sitetree.xml" method="GET"/>
+  &lt;/navigation>
+&lt;/introspection>
           </artwork>
         </figure>
       </section>
@@ -227,6 +236,111 @@
 
     <section title="NAR - Neutron Archive">
       <t>TBD</t>
+    </section>
+
+    <section title="Exceptions">
+      <t>If a Neutron-capable client issues a request, the server can respond with exceptions. The following exceptions are defined by the Neutron protocol.</t>
+      <t>Neutron exceptions have a root element "&lt;exception>" with a "type" attribute, specifying the kind of exception. This element then contains a "&lt;message>" element which can contain a human-readable representation of the exception.</t>
+      <t>The second element is defined by the exception type (for details, see the various exception types below).</t>
+      <section title="Authentication">
+        <t>Note that this section is basically the specification of Neutron-Auth, a separate protocol which allows the authentication of clients using arbitrary inputs.</t>
+        <t>Server response upon a client request which requires authentication:</t>
+        <figure>
+          <artwork>
+&lt;?xml version="1.0"?>
+
+&lt;exception xmlns="http://www.wyona.org/neutron/1.0" type="authorization">
+  &lt;message>Authorization denied for "URL" ...&lt;/message>
+
+  &lt;authentication>
+    &lt;login url="https://demo.phoenix.wyona.org/protected/?action=login-neutron">
+      &lt;message>Login for realm 'phoenix-demo' ...&lt;/message>
+      &lt;form>
+        &lt;param description="Username" name="username"/>
+        &lt;param description="Password" name="passwd"/>
+      &lt;/form>
+    &lt;/login>
+    &lt;logout url="http://demo.phoenix.wyona.org/?action=logout"/>
+  &lt;/authentication>
+&lt;/exception>
+          </artwork>
+        </figure>
+        <t>New client request:</t>
+        <figure>
+          <artwork>
+&lt;?xml version="1.0"?>
+
+&lt;authentication xmlns="http://www.wyona.org/neutron/1.0">
+  &lt;param name="username">lenya&lt;/param>
+  &lt;param name="passwd">levi&lt;/param>
+&lt;/authentication>
+          </artwork>
+        </figure>
+      </section>
+
+      <section title="Checkout">
+        <figure>
+          <artwork>
+&lt;?xml version="1.0"?>
+
+&lt;exception xmlns="http://www.wyona.org/neutron/1.0" type="checkout">
+  &lt;message>Document has already been checked-out by ...&lt;/message>
+
+  &lt;checkout url="/hello/world.html">
+    &lt;locked-by>Jimi Hendrix&lt;/locked-by>
+    &lt;lock-date format="standard">1969.10.03T15:34:26&lt;/lock-date>
+    &lt;!-- Optional. Depending on server implementation -->
+    &lt;break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
+  &lt;/checkout>
+&lt;/exception>
+          </artwork>
+        </figure>
+        <t>How does the server respond to the "break-lock" request?</t>
+        <t>
+          <list style="symbols">
+            <t>Server breaks lock, check-out for new user and returns content.</t>
+            <t>Server breaks lock and returns lock broken successfully, please retry opening again ...</t>
+            <t>Server responds breaking the lock failed for whatever reason.</t>
+          </list>
+        </t>
+      </section>
+
+      <section title="Checkin">
+        <t>If the server cannot save the data, then it should return HTTP Status Code 500 and a message.</t>
+        <figure>
+          <artwork>
+&lt;?xml version="1.0"?>
+
+&lt;exception xmlns="http://www.wyona.org/neutron/1.0" type="checkin">
+  &lt;message>Checkin failed, because document has been checked-out by ...&lt;/message>
+
+  &lt;checkin url="/hello/world.html">
+    &lt;locked-by>Jimi Hendrix&lt;/locked-by>
+    &lt;lock-date format="standard">1969.10.03T15:34:26&lt;/lock-date>
+    &lt;!-- Optional. Depending on server implementation -->
+    &lt;break-lock url="/hello/world.html?yanel.resource.usecase=break-lock"/>
+  &lt;/checkin>
+&lt;/exception>
+          </artwork>
+        </figure>
+      </section>
+
+      <section title="Data Not Well-Formed">
+        <t>If the server cannot save the data, then it should return HTTP Status Code 500 and a message.</t>
+        <figure>
+          <artwork>
+&lt;?xml version="1.0"?>
+
+&lt;exception xmlns="http://www.wyona.org/neutron/1.0" type="data-not-well-formed">
+  &lt;message>Received data is not well-formed XML ...&lt;/message>
+
+  &lt;data-not-well-formed url="/hello/world.html">
+    &lt;line number="45" message="element not closed"/>
+  &lt;/data-not-well-formed>
+&lt;/exception>
+          </artwork>
+        </figure>
+      </section>
     </section>
 
     <section title="Notational Conventions">
