@@ -48,7 +48,7 @@
 
 <rfc category="std" ipr="full3978" docName="draft-neutron-protocol-0.txt">
   <front>
-    <title>The Neutron Protocol</title>
+    <title>The Neutron 1.0 Protocol</title>
 
     <author initials="M.W." surname="Wechner" fullname="Michael Wechner" role="editor">
       <organization>Wyona</organization>
@@ -103,36 +103,52 @@
 
   <middle>
     <section title="Introduction">
-      <t>Neutron is an xml-based application level protocol for remote content authoring. Neutron provides a set of methods and configuration directives that allow for:</t>
+      <t>Neutron 1.0 is an xml-based application level protocol for remote content authoring. Neutron provides a set of methods and configuration directives that allow for:</t>
       <t>
         <list style="symbols">
           <t>concurrent access to resources</t>
-          <t>basic file operations (move, delete)</t>
           <t>creating resources based on templates</t>
-          <t>linking resources to datatype definitions</t>
           <t>providing styling information for resources</t>
           <t>metadata handling</t>
           <t>accessing revisions</t>
-          <t>dealing with publishing workflow stages</t>
           <t>custom authentication schemes</t>
           <t>and more</t>
         </list>
       </t>
       <t>Neutron has been been started as an effort to provide a generic API to what common Content Management Systems (CMS) support with respect to content authoring. CMS vendors usually implement their own frontend components for content authoring and/or implement a public API for third party component integration. Neutron is ment to be an open standard that leverages integration and reuse of third party components such as editing applications or standalone clients targeted at offline operation. While targeted at large scale content management systems, Neutron can also be used for accessing lightweight content repositories, datastores or remote file systems.</t>
       <t>Neutron is typically used over HTTP. However, Neutron can be run on top of any other transport protocol if feasable.</t>
-      <t>Neutron provides a comprehensive set of instructions for dealing with xml-based resources. Usage of xml-based resources is not required though. Neutron also covers transactions of binary or custom formatted data while being extensible enough for integrators to deal with the data formats of their choice.</t>
-      <t>Compared to other open content authoring standards Neutron is higher-level than WebDAV and lower-level that ATOM, to name two prominent examples in that field. While WebDAV operates on Web resources Neutron operates on content servers that might expose their resources to the web. While ATOM is targeted at content syndication Neutron provides a generic API to content authoring.</t>
+      <t>Neutron provides a comprehensive set of instructions for dealing with XML-based resources. Usage of XML-based resources is not required though. Neutron also covers transactions of binary, SGML or other custom formatted data while being extensible enough for integrators to deal with the data formats of their choice.</t>
+      <t>Compared to other open content authoring standards Neutron is higher-level than WebDAV and lower-level than Atom, to name two prominent examples in that field. While WebDAV operates on Web resources Neutron operates on content servers that might expose their resources to the web. While Atom is targeted at content syndication Neutron provides a generic API to content authoring.</t>
       <t>For examples and usage patterns see <xref target="examples"/>.</t>
     </section>
- 
+
+    <section title="Introspection Object">
+      <t>
+        The core of the Neutron Protocol consists of the introspection object. The introspection object contains information about one or more resources, in terms of what operations can be performed on those resources, and how.
+      </t>
+      <t>
+        The same introspection object can be bound to one or multiple resources (i.e. it can be auto-discovered through these resources), and can in turn contain information about one or multiple resources. The introspection object is not required to contain information about the object to which it was bound, but it is recommended to do so.
+      </t>
+      <t>
+        Note that it might not be possible to bind an introspection object to a specific resource. Namely, it may not be possible to bind it to e.g. an ODT document, and therefore it is not possible to discover the introspection object when processing the ODT document. In such cases, the introspection object should either be bound to a nearby object, or the contents of the introspection object should be merged with the contents of a nearby introspection object.
+      </t>
     <section title="Auto-Discovery of Introspection">
       <t>
-        A client supporting HTML (as for instance <eref target="http://www.yulup.org">Yulup</eref>) can discover
-        the introspection through a neutron specific link within the HTML head.
+        A client supporting HTML/XHTML (like e.g. <eref target="http://www.yulup.org">Yulup</eref>) can discover the introspection object through a Neutron specific "&lt;link&gt;" within the HTML head.
+      </t>
+      <t>
+        The "&lt;link&gt;" element MUST contain the following attributes:
+      </t>
+      <t>
+        <list style="hanging">
+          <t hangText="rel">The "rel" attribute of the "&lt;link&gt;" element MUST be set to "neutron-introspection".</t>
+          <t hangText="type">The "type" attribute of the "&lt;link&gt;" element MUST be set to "application/neutron+xml".</t>
+          <t hangText="href">The "href" attribute MUST contain the URI pointing to the introspection object. If this URI is relative, a client MUST resolve the URI relative to the URI of the document in which the "&lt;link&gt;" element is contained.</t>
+        </list>
       </t>
       <section title="Example">
-      <figure>
-        <artwork>
+        <figure title="Introspection Auto-Discovery Example">
+          <artwork>
 &lt;html>
   &lt;head>
     &lt;link rel="neutron-introspection" type="application/neutron+xml" href="introspection-hello-world.xml"/>
@@ -141,16 +157,17 @@
   &lt;/head>
   ...
 &lt;/html>
-        </artwork>
-      </figure>
+          </artwork>
+        </figure>
       </section>
+    </section>
     </section>
 
     <section title="Editing Resources">
       <section title="Opening and Saving without Locking">
         <section title="Introspection Example">
-        <figure>
-          <artwork>
+          <figure title="Opening and Saving without Locking Example">
+            <artwork>
 &lt;?xml version="1.0"?>
 
 &lt;introspection>
@@ -159,8 +176,8 @@
     &lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
   &lt;/edit>
 &lt;/introspection>
-          </artwork>
-        </figure>
+            </artwork>
+          </figure>
         </section>
 
         <section title="Opening a Resource">
@@ -179,8 +196,8 @@
 
       <section title="Opening and Saving with Locking">
         <section title="Introspection Example">
-        <figure>
-          <artwork>
+          <figure title="Opening and Saving with Locking Example">
+            <artwork>
 &lt;?xml version="1.0"?>
 
 &lt;introspection>
@@ -189,8 +206,8 @@
     &lt;checkin url="index.xhtml?yanel.resource.usecase=checkin" method="PUT"/>
   &lt;/edit>
 &lt;/introspection>
-          </artwork>
-        </figure>
+            </artwork>
+          </figure>
         </section>
 
         <section title="Opening a Resource">
