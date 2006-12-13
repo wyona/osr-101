@@ -1,0 +1,24 @@
+NEUTRON - Open Content Management User Interface
+------------------------------------------------
+
+Neutron is a vendor-neutral, open, XML-based Content Management User Interface, enabling client applications to access Content Management Systems in a programmatic way. Neutron offers introspection, resource operations, workflow and other content management functionality.
+
+The goal of Neutron is to "neutralize" the various server interfaces, i.e. to decouple the interface from a specific implementation, thereby creating a unified, yet flexible, programmatic interface to Content Management Systems.
+
+Neutron is built around the idea of introspection, i.e. the dynamic detection of server capabilities, either system-globally, or parameterised with a specific resource. Via introspection, Neutron allows visitors of a document (e.g. a webpage) to find out about the various source documents (fragments) which make up its content. Introspection tells the client about the operations it can perform on a fragment, as well as about meta-data associated with that fragment. Neutron is agnostic to the type of data it describes, but offers additional support for XML-based dcouments like the ability to specify associated schemas or stylesheets (XSL, etc.), in order to e.g. enhance the editing of a resource.
+
+For each document fragment, the Neutron protocol specifies resource operations like "open" and "save" (checking a fragment in and out without locking), "new", "checkout" and "checkin" (checking a fragment in and out using a lock), "versioning" (requesting a specific version of a fragment), "lock-breaking" (if a user checked out a document without checking it back in, and he never released the lock on it), "resource listing" (to browse the available fragments on the CMS) and "resource search" (to search for a fragment on the server based on name, type, and other meta-data).
+
+Neutron is connection-independent which means that you can operate on a document over time, during which you can go offline, change your IP address, etc., but your workflow will not break.
+
+Access control is solved independently of Neutron (e.g. via Neutron-Auth, a companion protocol, or by using the authentication mechanism of the underlying communication channel). Nevertheless, a server can of course always choose not to reveal all available functionality to unauthorised users (e.g. based on HTTP authorisation or client-side certificates), or for instance requiring uploads to use a specific method which in turn implies a certain authentication and authorisation process.
+
+In contrast to other protocols, servers and clients are free to expose whatever part of functionality they want, or actually implement. For example, a CMS which does not support locking may only expose "open" and "save" operations, and a CMS which does not support versioning may simply ignore that part of the protocol.
+
+In constrast to WebDAV and APP (Atom Publishing Protocol), Neutron does not dictate a specific protocol to use for transferring data. Instead, the server can list the various methods it supports, and the client can then pick the protocol which fits best. Therefore, a server may for instance require the client to use a simple HTTP GET request on a specific URI to checkout and lock a document, whereas requring the client to use WebDAV to store the document back to the CMS.
+
+In the light of new revisions of the standard, Neutron specifies how clients and servers negotiate the supported protocol versions, such that they can make sure they always use the latest version both client and server support.
+
+The development of Neutron is based on the extensive experience of developers from various open source Content Management projects and is thought as a consolidation of common patterns found within the content management space.
+
+More information can be found at http://neutron.wyona.org/.
