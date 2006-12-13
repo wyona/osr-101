@@ -1,6 +1,23 @@
 NEUTRON - Open Content Management User Interface
 ------------------------------------------------
 
+Description (up to 200 words)
+-----------------------------
+
+Neutron is a vendor-neutral, open, XML-based Content Management User Interface, enabling client applications to access Content Management Systems in a programmatic way. The goal of Neutron is to "neutralise" the various server interfaces, i.e. to decouple the interface from a specific implementation, thereby creating a unified, yet flexible, programmatic interface to Content Management Systems. It offers introspection, resource operations, work-flow and other content management functionality.
+
+Neutron is built around the idea of introspection, i.e. the dynamic detection of server capabilities, either system-globally, or parameterised with a specific resource.
+
+Neutron is connection-independent which means that you can operate on a document over time, during which you can go offline, change your IP address, etc., but your work-flow will not break.
+
+In contrast to WebDAV and APP (Atom Publishing Protocol), Neutron does not dictate a specific protocol to use for transferring data. Instead, the server can list the various methods it supports, and the client can then pick the protocol which fits best.
+
+In the light of new revisions of the standard, Neutron specifies how clients and servers negotiate the supported protocol versions, such that they can make sure they always use the latest version both client and server support.
+
+
+Abstract
+--------
+
 Neutron is a vendor-neutral, open, XML-based Content Management User Interface, enabling client applications to access Content Management Systems in a programmatic way. Neutron offers introspection, resource operations, work-flow and other content management functionality.
 
 The goal of Neutron is to "neutralise" the various server interfaces, i.e. to decouple the interface from a specific implementation, thereby creating a unified, yet flexible, programmatic interface to Content Management Systems.
