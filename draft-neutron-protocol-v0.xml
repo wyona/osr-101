@@ -308,6 +308,8 @@
         </figure>
       </section>
 
+      <t>(Please note that the above POST request by the client would actually be encrypted since https/SSL is being used, but for illustration plain text is displayed)</t>
+
       <t>Server Response: HTTP/1.1 200 OK..</t>
 
       <t>Client Request: GET https://foo.bar/protected.xhtml</t>
