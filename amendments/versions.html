@@ -1,15 +1,17 @@
 !Versions of Resources
 
 {{{
-introspection>
-  resource
-  edit mime-type="application/xhtml+xml" name="Homepage">
-    open url="index.xhtml" method="GET"/>
-    save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
-  /edit>
-  versions>
-    version/>
-  /versions>
-  /resource
-/introspection>
+lt;introspection>
+  lt;resource
+    lt;edit mime-type="application/xhtml+xml" name="Homepage">
+      lt;open url="index.xhtml" method="GET"/>
+      lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
+    lt;/edit>
+
+    lt;versions>
+      lt:version url="index.xhtml?yanel.resource.revision=20843"/>
+      lt:version url="index.xhtml?yanel.resource.revision=20023">title changedlt;/version>
+    lt;/versions>
+  lt;/resource
+lt;/introspection>
 }}}
