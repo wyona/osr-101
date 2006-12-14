@@ -261,28 +261,40 @@
       <t>The second element is defined by the exception type (for details, see the various exception types below).</t>
       <section title="Authentication">
         <t>Note that this section is basically the specification of Neutron-Auth, a separate protocol which allows the authentication of clients using arbitrary inputs.</t>
-        <t>Server response upon a client request which requires authentication:</t>
+
+        <t>A client supporting Neutron-Auth should always add "WWW-Authenticate: Neutron-Auth" to the HTTP header (beside the version of Neutron, e.g. Neutron: 1.0-dev) such that a server can respond accordingly.</t> 
+
+        <t>An example of a client-server coversation is as follows:</t>
+
+        <t>Client Request: GET http://foo.bar/protected.xhtml HTTP/1.1..WWW-Authenticate: Neutron-Auth..Neutron: 1.0-dev..</t>
+
+        <t>Server Response: HTTP/1.1 301 (or 307) https://foo.bar/protected.xhtml</t>
+
+        <t>Client Request: GET https://foo.bar/protected.xhtml HTTP/1.1..WWW-Authenticate: Neutron-Auth..Neutron: 1.0-dev..</t>
+
+        <t>Server Response: HTTP/1.1 401 Unauthorized..</t>
         <figure>
           <artwork>
 &lt;?xml version="1.0"?>
 
 &lt;exception xmlns="http://www.wyona.org/neutron/1.0" type="authorization">
-  &lt;message>Authorization denied for "URL" ...&lt;/message>
+  &lt;message>Authorization denied for https://foo.bar/protected.xhtml ...&lt;/message>
 
   &lt;authentication>
-    &lt;login url="https://demo.phoenix.wyona.org/protected/?action=login-neutron">
-      &lt;message>Login for realm 'phoenix-demo' ...&lt;/message>
+    &lt;login url="https://foo.bar/protected.xhtml?action=login-neutron">
+      &lt;message>Login for realm 'Foo Bar' ...&lt;/message>
       &lt;form>
         &lt;param description="Username" name="username"/>
         &lt;param description="Password" name="passwd"/>
       &lt;/form>
     &lt;/login>
-    &lt;logout url="http://demo.phoenix.wyona.org/?action=logout"/>
+    &lt;logout url="http://foo.bar/?action=logout"/>
   &lt;/authentication>
 &lt;/exception>
           </artwork>
         </figure>
-        <t>New client request:</t>
+
+        <t>Client Request: POST https://foo.bar/protected.xhtml?action=login-neutron</t>
         <figure>
           <artwork>
 &lt;?xml version="1.0"?>
@@ -290,10 +302,15 @@
 &lt;authentication xmlns="http://www.wyona.org/neutron/1.0">
   &lt;param name="username">lenya&lt;/param>
   &lt;param name="passwd">levi&lt;/param>
+  &lt;original-request url="https://foo.bar/protected.xhtml"/>
 &lt;/authentication>
           </artwork>
         </figure>
       </section>
+
+      <t>Server Response: HTTP/1.1 200 OK..</t>
+
+      <t>Client Request: GET https://foo.bar/protected.xhtml</t>
 
       <section title="Checkout">
         <figure>
