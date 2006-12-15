@@ -6,7 +6,7 @@ Description (up to 200 words)
 
 Neutron is a vendor-neutral, open, XML-based Content Management User Interface, enabling client applications to access Content Management Systems in a programmatic way. The goal of Neutron is to "neutralise" the various server interfaces, i.e. to decouple the interface from a specific implementation, thereby creating a unified, yet flexible, programmatic interface to Content Management Systems. It offers introspection, resource operations, work-flow and other content management functionality.
 
-Neutron is built around the idea of introspection, i.e. the dynamic detection of server capabilities, either system-globally, or parameterised with a specific resource.
+Neutron is built around the idea of introspection, i.e. the dynamic discovery of server capabilities, either system-globally, or parameterised with a specific resource.
 
 Neutron is connection-independent which means that you can operate on a document over time, during which you can go offline, change your IP address, etc., but your work-flow will not break.
 
@@ -22,7 +22,7 @@ Neutron is a vendor-neutral, open, XML-based Content Management User Interface, 
 
 The goal of Neutron is to "neutralise" the various server interfaces, i.e. to decouple the interface from a specific implementation, thereby creating a unified, yet flexible, programmatic interface to Content Management Systems.
 
-Neutron is built around the idea of introspection, i.e. the dynamic detection of server capabilities, either system-globally, or parameterised with a specific resource. Via introspection, Neutron allows visitors of a document (e.g. a web-page) to find out about the various source documents (fragments) which make up its content. Introspection tells the client about the operations it can perform on a fragment, as well as about meta-data associated with that fragment. Neutron is agnostic to the type of data it describes, but offers additional support for XML-based documents like the ability to specify associated schemas or stylesheets (XSL, etc.), in order to e.g. enhance the editing of a resource.
+Neutron is built around the idea of introspection, i.e. the dynamic discovery of server capabilities, either system-globally, or parameterised with a specific resource. Via introspection, Neutron allows visitors of a document (e.g. a web-page) to find out about the various source documents (fragments) which make up its content. Introspection tells the client about the operations it can perform on a fragment, as well as about meta-data associated with that fragment. Neutron is agnostic to the type of data it describes, but offers additional support for XML-based documents like the ability to specify associated schemas or stylesheets (XSL, etc.), in order to e.g. enhance the editing of a resource.
 
 For each document fragment, the Neutron protocol specifies resource operations like "open" and "save" (checking a fragment in and out without locking), "new", "checkout" and "checkin" (checking a fragment in and out using a lock), "versioning" (requesting a specific version of a fragment), "lock-breaking" (if a user checked out a document without checking it back in, and he never released the lock on it), "resource listing" (to browse the available fragments on the CMS) and "resource search" (to search for a fragment on the server based on name, type, and other meta-data).
 
