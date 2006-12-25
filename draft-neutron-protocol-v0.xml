@@ -170,7 +170,7 @@
             <artwork>
 &lt;?xml version="1.0"?>
 
-&lt;introspection>
+&lt;introspection xmlns="http://www.wyona.org/neutron/1.0">
   &lt;edit mime-type="application/xhtml+xml" name="Homepage">
     &lt;open url="index.xhtml" method="GET"/>
     &lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
@@ -200,7 +200,7 @@
             <artwork>
 &lt;?xml version="1.0"?>
 
-&lt;introspection>
+&lt;introspection xmlns="http://www.wyona.org/neutron/1.0">
   &lt;edit mime-type="application/xhtml+xml" name="Homepage">
     &lt;checkout url="index.xhtml?yanel.resource.usecase=checkout" method="GET"/>
     &lt;checkin url="index.xhtml?yanel.resource.usecase=checkin" method="PUT"/>
