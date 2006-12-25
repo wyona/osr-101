@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<introspection xmlns="http://www.wyona.org/neutron/1.0">
+
+  <edit mime-type="text/plain" name="Save without releasing the lock">
+    <checkout url="save-without-releasing-the-lock.html.txt?yanel.resource.usecase=checkout" method="GET"/>
+    <checkin  url="save-without-releasing-the-lock.html.txt?yanel.resource.usecase=checkin" method="PUT"/>
+  </edit>
+</introspection>
