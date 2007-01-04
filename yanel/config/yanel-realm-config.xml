@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <realm-config>
-  <name>OSR-101</name>
+  <name>Neutron/OSR-101</name>
   <rti>rti-repository.xml</rti>
   <data>data-repository.xml</data>
   <ac-policies>ac-policies-repository.xml</ac-policies>
