@@ -2,7 +2,7 @@
 
 <introspection xmlns="http://www.wyona.org/neutron/1.0">
 <edit mime-type="application/xml" name="Neutron Protocol Specification">
-  <checkout url="draft-neutron-protocol-v0.xml?yanel.resource.usecase=checkout" method="GET"/>
-  <checkin  url="draft-neutron-protocol-v0.xml?yanel.resource.usecase=checkin" method="PUT"/>
+  <open url="draft-neutron-protocol-v0.xml"                             method="GET"/>
+  <save url="draft-neutron-protocol-v0.xml?yanel.resource.usecase=save" method="PUT"/>
 </edit>
 </introspection>
