@@ -165,6 +165,7 @@
 
     <section title="Editing Resources">
       <section title="Opening and Saving without Locking">
+        <t>URLs are being resolved relative to the introspection URL. Empty URLs refer to the introspection URL itself.</t>
         <section title="Introspection Example">
           <figure title="Example: Opening and Saving of an XHTML document without Locking">
             <artwork>
@@ -205,7 +206,7 @@
             To save a resource, clients use the URL and METHOD specified within the introspection.
           </t>
           <t>
-            The server responds with a status code of 200.
+            The server responds with a status code of 200 and the content which has been saved as a response. Please note that server might change the received content (e.g. last modified date) and hence the client is able to become aware of such changes.
           </t>
         </section>
       </section>
