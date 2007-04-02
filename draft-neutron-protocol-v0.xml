@@ -160,6 +160,10 @@
           </artwork>
         </figure>
       </section>
+
+      <section title="Mime Type">
+        <t>The mime type of an introspection document which is being returned by the server to the client is "application/xml". Please note that the mime type refered to within this section is independent of the type declaration within the introspection link.</t>
+      </section>
     </section>
     </section>
 
