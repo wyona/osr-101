@@ -1,4 +1,5 @@
 !Versions of Resources
+!!Server which supports Versioning and Workflow
 
 {{{
 lt;introspection>
@@ -9,16 +10,155 @@ lt;introspection>
     lt;/edit>
 
     lt;versions>
-      lt:version url="index.xhtml?yanel.resource.revision=20843">
-         lt;comment>slugline updatedlt;/comment>
-         lt;date>2006-05-23T00:38:05+02:00lt;/date>
-         lt;user>joelt;/user>
-         lt;revision>20843lt;/revision>
+      lt;version url="index.xhtml?yanel.resource.revision=20843">
+        lt;comment>slugline updatedlt;/comment>
+        lt;date>2006-05-23T00:38:05+02:00lt;/date>
+        lt;user>joelt;/user>
+        lt;revision>20843lt;/revision>
+        lt;workflow>
+          lt;state date="2006.12.14">REVIEWlt;/state>
+          lt;transitions>
+            lt;transition id="publish" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
+            lt;transition id="reject" to="DRAFT"/>
+          lt;/transitions>
+          lt;history>
+            lt;state date="2006.12.13">DRAFTlt;/state>
+          lt;/history>
+        lt;/workflow>
       lt;/version>
-      lt:version url="index.xhtml?yanel.resource.revision=20023">title changedlt;/version>
+      lt;version url="index.xhtml?yanel.resource.revision=20840">
+        lt;comment>slugline updatedlt;/comment>
+        lt;date>2006-05-22T03:38:05+02:00lt;/date>
+        lt;user>joelt;/user>
+        lt;revision>20843lt;/revision>
+        lt;workflow>
+          lt;state date="2006.12.14">DRAFTlt;/state>
+          lt;transitions>
+            lt;transition id="submit-to-review" to="REVIEW" url="?yanel.resource.workflow.transition=submit-to-review" method="POST"/>
+          lt;/transitions>
+          lt;history>
+            lt;state date="2006.12.12">DRAFTlt;/state>
+          lt;/history>
+        lt;/workflow>
+      lt;/version>
+      lt;version url="index.xhtml?yanel.resource.revision=20023">
+        lt;comment>title changedlt;comment>
+        lt;revision>20023lt;/revision>
+        lt;workflow>
+          lt;state date="2006.12.13">LIVElt;/state>
+          lt;history>
+            lt;state date="2006.12.11">REVIEWlt;/state>
+            lt;state date="2006.12.10">DRAFTlt;/state>
+          lt;/history>
+        lt;/workflow>
+      lt;/version>
     lt;/versions>
   lt;/resource
 lt;/introspection>
 }}}
 
 Date Format must be ISO-8601
+
+
+!!Server which supports Versioning and Workflow (but only for the latest revision)
+
+{{{
+lt;introspection>
+  lt;resource
+    lt;edit mime-type="application/xhtml+xml" name="Homepage">
+      lt;open url="index.xhtml" method="GET"/>
+      lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
+    lt;/edit>
+
+    lt;versions>
+      lt;version url="index.xhtml?yanel.resource.revision=20843">
+        lt;comment>slugline updatedlt;/comment>
+        lt;date>2006-05-23T00:38:05+02:00lt;/date>
+        lt;user>joelt;/user>
+        lt;revision>20843lt;/revision>
+        lt;workflow>
+          lt;current-status date="2006.12.14">REVIEWlt;/current-status>
+          lt;transitions>
+            lt;transition id="publish" from="REVIEW" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
+            lt;transition id="reject" from="REVIEW" to="AUTHORING"/>
+          lt;/transitions>
+          lt;history>
+            lt;status date="2006.12.13">AUTHORINGlt;/status>
+          lt;/history>
+        lt;/workflow>
+      lt;/version>
+      lt;version url="index.xhtml?yanel.resource.revision=20840">
+        lt;comment>slugline updatedlt;/comment>
+        lt;date>2006-05-22T03:38:05+02:00lt;/date>
+        lt;user>joelt;/user>
+        lt;revision>20843lt;/revision>
+      lt;/version>
+      lt;version url="index.xhtml?yanel.resource.revision=20023">
+        lt;comment>title changedlt;comment>
+        lt;revision>20023lt;/revision>
+      lt;/version>
+    lt;/versions>
+  lt;/resource
+lt;/introspection>
+}}}
+
+
+!!Server which supports Versioning but no Workflow
+
+{{{
+lt;introspection>
+  lt;resource
+    lt;edit mime-type="application/xhtml+xml" name="Homepage">
+      lt;open url="index.xhtml" method="GET"/>
+      lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
+    lt;/edit>
+
+    lt;versions>
+      lt;version url="index.xhtml?yanel.resource.revision=20843">
+        lt;comment>slugline updatedlt;/comment>
+        lt;date>2006-05-23T00:38:05+02:00lt;/date>
+        lt;user>joelt;/user>
+        lt;revision>20843lt;/revision>
+        lt;workflow>
+          lt;transitions>
+            lt;transition id="publish" from="AUTHORING" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
+          lt;/transitions>
+        lt;/workflow>
+      lt;/version>
+      lt;version url="index.xhtml?yanel.resource.revision=20840">
+        lt;comment>slugline updatedlt;/comment>
+        lt;date>2006-05-22T03:38:05+02:00lt;/date>
+        lt;user>joelt;/user>
+        lt;revision>20843lt;/revision>
+      lt;/version>
+      lt;version url="index.xhtml?yanel.resource.revision=20023">
+        lt;comment>title changedlt;comment>
+        lt;revision>20023lt;/revision>
+      lt;/version>
+    lt;/versions>
+  lt;/resource
+lt;/introspection>
+}}}
+
+!!Server which supports no Versioning and no Workflow
+
+{{{
+lt;introspection>
+  lt;resource
+    lt;edit mime-type="application/xhtml+xml" name="Homepage">
+      lt;open url="index.xhtml" method="GET"/>
+      lt;save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
+    lt;/edit>
+
+    lt;versions>
+      lt;version url="index.xhtml">
+        lt;workflow>
+          lt;transitions>
+            lt;transition id="publish" from="AUTHORING" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
+          lt;/transitions>
+        lt;/workflow>
+      lt;/version>
+    lt;/versions>
+  lt;/resource
+lt;/introspection>
+}}}
