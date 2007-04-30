@@ -25,6 +25,7 @@
 
 Client Request: POST https://foo.bar/my-document.xtml?yanel.resource.workflow.transition=publish
 {{{
+<?xml version="1.0"?>
 <workflow xmlns="http://www.wyona.org/neutron/2.0">
   <transition id="publish" revision="OPTIONAL"/>
 </workflow>
@@ -33,6 +34,7 @@ Client Request: POST https://foo.bar/my-document.xtml?yanel.resource.workflow.tr
 
 Server Response: HTTP/1.1 200 OK..
 {{{
+<?xml version="1.0"?>
 <workflow xmlns="http://www.wyona.org/neutron/2.0">
   <current-status date="2006.12.15">LIVE/AUTHORING</current-status>
   <transitions>
