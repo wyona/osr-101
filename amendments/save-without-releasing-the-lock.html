@@ -1,13 +1,13 @@
 !Save without releasing the lock
 
 {{{
-lt;?xml version="1.0"?>
+<?xml version="1.0"?>
 
-lt;introspection xmlns="http://www.wyona.org/neutron/1.0">
-  lt;edit mime-type="application/xhtml+xml" name="Homepage">
-    lt;checkout url="index.xhtml?yanel.resource.usecase=checkout" method="GET"/>
-    lt:save url="index.xhtml?yanel.resource.usecase=save" method="PUT"/>
-    lt:checkin url="index.xhtml?yanel.resource.usecase=checkin" method="PUT"/>
-  lt:/edit>
-lt;/introspection>
+<introspection xmlns="http://www.wyona.org/neutron/1.0">
+  <edit mime-type="application/xhtml+xml" name="Homepage">
+    <checkout url="index.xhtml?yanel.resource.usecase=checkout" method="GET"/>
+    <save url="index.xhtml?yanel.resource.usecase=save" method="PUT"/>
+    <checkin url="index.xhtml?yanel.resource.usecase=checkin" method="PUT"/>
+  </edit>
+</introspection>
 }}}
