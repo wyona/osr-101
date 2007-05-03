@@ -167,6 +167,11 @@
     </section>
     </section>
 
+   <section title="Neutron HTTP Headers">
+      <t>WWW-Authenticate: Neutron-Auth</t>
+      <t>Neutron: 1.0, 2.0-dev / en</t>
+    </section>
+
     <section title="Editing Resources">
       <section title="Opening and Saving without Locking">
         <t>URLs are being resolved relative to the introspection URL. Empty URLs refer to the introspection URL itself.</t>
