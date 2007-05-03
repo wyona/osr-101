@@ -3,8 +3,8 @@
 
 {{{
 <introspection xmlns="http://www.wyona.org/neutron/2.0">
-  <resource>
-    <edit mime-type="application/xhtml+xml" name="Homepage">
+  <resource name="Homepage">
+    <edit mime-type="application/xhtml+xml">
       <open url="index.xhtml" method="GET"/>
       <save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
     </edit>
@@ -18,7 +18,13 @@
         <workflow>
           <state date="2006.12.14">REVIEW</state>
           <transitions>
-            <transition id="publish" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
+            <transition id="publish" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST">
+              <description xml:lang="en">Publish</description>
+              <description xml:lang="de">Publizieren</description>
+            </transition>
+            <transition id="publish-and-notify" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST">
+              <description xml:lang="en">Publish and notify</description>
+            </transition>
             <transition id="reject" to="DRAFT"/>
           </transitions>
           <history>
@@ -119,11 +125,6 @@ Date Format must be ISO-8601
         <date>2006-05-23T00:38:05+02:00</date>
         <user>joe</user>
         <revision>20843</revision>
-        <workflow>
-          <transitions>
-            <transition id="publish" from="AUTHORING" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
-          </transitions>
-        </workflow>
       </version>
       <version url="index.xhtml?yanel.resource.revision=20840">
         <comment>slugline updated</comment>
@@ -140,7 +141,8 @@ Date Format must be ISO-8601
 </introspection>
 }}}
 
-!!Server which supports no Versioning and no Workflow
+
+!!Server which supports no Versioning but Workflow
 
 {{{
 <introspection xmlns="http://www.wyona.org/neutron/2.0">
@@ -151,14 +153,33 @@ Date Format must be ISO-8601
     </edit>
 
     <versions>
-      <version url="index.xhtml">
+      <version url="index.xhtml?yanel.resource.revision=20843">
         <workflow>
+          <current-status date="2006.12.14">REVIEW</current-status>
           <transitions>
-            <transition id="publish" from="AUTHORING" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
+            <transition id="publish" from="REVIEW" to="LIVE" url="index.xhtml?yanel.resource.workflow.transition=publish" method="POST"/>
+            <transition id="reject" from="REVIEW" to="AUTHORING"/>
           </transitions>
+          <history>
+            <status date="2006.12.13">AUTHORING</status>
+          </history>
         </workflow>
       </version>
     </versions>
+  </resource>
+</introspection>
+}}}
+
+
+!!Server which supports no Versioning and no Workflow
+
+{{{
+<introspection xmlns="http://www.wyona.org/neutron/2.0">
+  <resource>
+    <edit mime-type="application/xhtml+xml" name="Homepage">
+      <open url="index.xhtml" method="GET"/>
+      <save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
+    </edit>
   </resource>
 </introspection>
 }}}
