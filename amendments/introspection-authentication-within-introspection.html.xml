@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<introspection xmlns="http://www.wyona.org/neutron/2.0">
+
+<resource name="Authentication within introspection">
+  <edit mime-type="text/plain">
+    <checkout url="authentication-within-introspection.html.txt?yanel.resource.usecase=checkout" method="GET"/>
+    <checkin  url="authentication-within-introspection.html.txt?yanel.resource.usecase=checkin" method="PUT"/>
+  </edit>
+</resource>
+</introspection>
