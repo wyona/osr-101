@@ -1,1 +1,18 @@
 !Authentication within introspection
+
+{{{
+<introspection>
+
+  <authentication>
+    <login url="http://foo.bar/?action=login-neutron">
+      <message>Login for realm 'Foo Bar' ...</message>
+      <form>
+        <param description="Username" name="username"/>
+        <param description="Password" name="passwd"/>
+      </form>
+    </login>
+    <logout url="http://foo.bar/?action=logout"/>
+  </authentication>
+
+</introspection>
+}}}
