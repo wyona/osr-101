@@ -1,9 +1,9 @@
 !Workflow
 
 {{{
-<introspection>
-  <resource>
-    <edit mime-type="application/xhtml+xml" name="Homepage">
+<introspection xmlns="http://www.wyona.org/neutron/2.0">
+  <resource name="Homepage">
+    <edit mime-type="application/xhtml+xml">
       <open url="index.xhtml" method="GET"/>
       <save url="index.xhtml?yanel.resource.usecase=save" method="POST"/>
     </edit>
@@ -47,4 +47,12 @@ Server Response: HTTP/1.1 200 OK..
 </workflow>
 }}}
 
-Server Response if transition failed: ...
+Server Response if transition failed: HTTP/1.1 500 Internal Server Error
+
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+
+<exception xmlns="http://www.wyona.org/neutron/2.0" type="workflow">
+  <message>Workflow transition failed to execute.</message>
+</exception>
+}}}
