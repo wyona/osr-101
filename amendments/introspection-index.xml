@@ -7,4 +7,11 @@
   <checkin  url="index.xhtml?yanel.resource.usecase=checkin"  method="PUT"/>
 </edit>
 
+<navigation>
+  <sitetree href="./" method="PROPFIND"/>
+  <!--
+  <sitetree href="./" method="PROPFIND"/>
+  -->
+</navigation>
+
 </introspection>
