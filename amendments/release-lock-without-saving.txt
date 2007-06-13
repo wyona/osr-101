@@ -1,10 +1,14 @@
-!Release lock without saving
+!Amendment: Release lock without saving
 
+Authors: Andreas Wüst, Michael Wechner\\
+Date: 2007.06.13
+
+Introspection:
 {{{
 <introspection xmlns="http://www.wyona.org/neutron/2.0">
   <resource name="Homepage">
-    <edit mime-type="application/xhtml+xml">
-      <checkout url="index.html?yanel.resource/viewid=txt&amp;yanel.resource.usecase=checkout" method="GET"/>
+    <edit mime-type="text/plain">
+      <checkout url="index.html?yanel.resource.viewid=txt&amp;yanel.resource.usecase=checkout" method="GET"/>
       <checkin url="index.html?yanel.resource.usecase=checkin" method="POST"/>
       <release-lock url="index.html?yanel.resource.usecase=release-lock" method="GET"/>
     </edit>
@@ -12,21 +16,11 @@
 </introspection>
 }}}
 
-
 Client Request: GET http://foo.bar/index.tml?yanel.resource.usecase=release-lock
-{{{
-<?xml version="1.0"?>
-<workflow xmlns="http://www.wyona.org/neutron/2.0">
-  <transition id="publish" revision="OPTIONAL"/>
-</workflow>
-}}}
-
 
 Server Response: HTTP/1.1 200 OK..
 
-
 Server Response if releasing lock failed: HTTP/1.1 500 Internal Server Error
-
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 

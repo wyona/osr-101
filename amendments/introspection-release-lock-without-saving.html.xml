@@ -4,6 +4,6 @@
 
   <edit mime-type="text/plain" name="Release lock ...">
     <checkout url="release-lock-without-saving.html?yanel.resource.viewid=txt&amp;yanel.resource.usecase=checkout" method="GET"/>
-    <checkin  url="workflow.html?yanel.resource.usecase=checkin" method="PUT"/>
+    <checkin  url="release-lock-without-saving.html?yanel.resource.usecase=checkin" method="PUT"/>
   </edit>
 </introspection>
