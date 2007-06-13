@@ -336,7 +336,27 @@
 
       <t>(Please note that the above POST request by the client would actually be encrypted since https/SSL is being used, but for illustration plain text is displayed)</t>
 
-      <t>Server Response: HTTP/1.1 200 OK..</t>
+      <t>Server Response: HTTP/1.1 200 OK.. or Server Response: HTTP/1.1 401 Unauthorized which gives a response body like</t>
+      <figure>
+        <artwork>
+&lt;?xml version="1.0"?>
+
+&lt;exception xmlns="http://www.wyona.org/neutron/1.0" type="authentication">
+  &lt;message>Authentication failed!&lt;/message>
+  &lt;authentication>
+    &lt;original-request url="http://demo.yulup.org:80/editable-page-with-locking.xhtml?yanel.resource.usecase=checkout"/>
+    &lt;login url="http://demo.yulup.org:80/editable-page-with-locking.xhtml?yanel.resource.usecase=checkout&amp;yanel.usecase=neutron-auth" method="POST">
+      &lt;form>
+        &lt;message>Enter username and password for "Yulup Demo" at "/demo/"&lt;/message>
+        &lt;param description="Username" name="username"/>
+        &lt;param description="Password" name="password"/>
+      &lt;/form>
+    &lt;/login>
+    &lt;logout url="http://demo.yulup.org:80/editable-page-with-locking.xhtml?yanel.resource.usecase=checkout&amp;yanel.usecase=logout" realm="Yulup Demo"/>
+  &lt;/authentication>
+&lt;/exception>
+        </artwork>
+      </figure>
 
       <t>Client Request: GET https://foo.bar/protected.xhtml</t>
 
