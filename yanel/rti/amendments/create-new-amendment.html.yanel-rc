@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<yanel:resource-config xmlns:yanel="http://www.wyona.org/yanel/rti/1.0">
+  <yanel:rti name="resource-creator" namespace="http://www.wyona.org/yanel/resource/1.0"/>
+
+  <yanel:custom-config>
+    <rc:resource-types xmlns:rc="http://www.wyona.org/yanel/resource/resource-creator/1.0">
+      <rc:resource-type name="wiki" namespace="http://www.wyona.org/yanel/resource/1.0">
+        <rc:display-name>New Wiki Page</rc:display-name>
+<!--
+        <rc:property name="xslt" value="/xslt/global.xsl"/>
+-->
+      </rc:resource-type>
+    </rc:resource-types>
+  </yanel:custom-config>
+<!--
+  <yanel:property name="xslt" value="/xslt/global.xsl"/>
+-->
+</yanel:resource-config>
