@@ -22,4 +22,12 @@
     <user id="andi" permission="true"/>
   </role>
 
+  <role id="toolbar">
+<!--
+    <user id="neutron" permission="true"/>
+-->
+    <user id="michi" permission="true"/>
+    <user id="andi" permission="true"/>
+  </role>
+
 </policy>
