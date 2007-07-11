@@ -7,12 +7,17 @@
   </role>
 
   <role id="open">
+<!--
+    <user id="neutron" permission="true"/>
+-->
     <user id="michi" permission="true"/>
     <user id="andi" permission="true"/>
   </role>
 
   <role id="write">
+<!--
     <user id="neutron" permission="true"/>
+-->
     <user id="michi" permission="true"/>
     <user id="andi" permission="true"/>
   </role>
