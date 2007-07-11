@@ -280,7 +280,34 @@
 <artwork>
 &lt;multistatus xmlns="DAV:">
   &lt;response>
+    &lt;href>/yanel/osr-101/amendments/index.html?yanel.webdav=propfind1&lt;/href>
+    &lt;propstat>
+      &lt;prop>
+        &lt;displayname>index.html&lt;/displayname>
+        &lt;resourcetype/>
+        &lt;getcontenttype>http/unix-directory&lt;/getcontenttype>
+        &lt;source>
+          &lt;link>
+            &lt;src>/yanel/osr-101/amendments/index.html&lt;/src>
+            &lt;dst>/yanel/osr-101/amendments/index.html?yanel.resource.modifiable.source&lt;/dst>
+          &lt;/link>
+        &lt;/source>
+      &lt;/prop>
+      &lt;status>HTTP/1.1 200 OK&lt;/status>
+    &lt;/propstat>
   &lt;/respons>
+
+  &lt;response>
+    &lt;href>/yanel/osr-101/amendments/.svn/&lt;/href>
+    &lt;propstat>
+      &lt;prop>
+        &lt;displayname>.svn&lt;/displayname>
+        &lt;resourcetype>&lt;collection/>&lt;/resourcetype>
+        &lt;getcontenttype>http/unix-directory&lt;/getcontenttype>
+      &lt;/prop>
+      &lt;status>HTTP/1.1 200 OK&lt;/status>
+    &lt;/propstat>
+  &lt;/response>
 &lt;/multistatus>
 </artwork>
 </figure>
