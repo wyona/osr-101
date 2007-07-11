@@ -266,10 +266,24 @@
 &lt;introspection xmlns="http://www.wyona.org/neutron/1.0">
   &lt;navigation>
     &lt;sitetree href="sitetree.xml" method="GET"/>
+    &lt;--
+    &lt;sitetree href="/" method="PROPFIND"/>
+    -->
   &lt;/navigation>
 &lt;/introspection>
           </artwork>
         </figure>
+      </section>
+
+      <section title="Response">
+<figure>
+<artwork>
+&lt;multistatus xmlns="DAV:">
+  &lt;response>
+  &lt;/respons>
+&lt;/multistatus>
+</artwork>
+</figure>
       </section>
     </section>
 
