@@ -1,0 +1,9 @@
+!XSLT Parameters
+
+{{{
+<resource>
+  <styles>
+    <style href="/foo/bar.xsl">
+      <parameter name="color" value="green"/>
+    </style>
+}}}

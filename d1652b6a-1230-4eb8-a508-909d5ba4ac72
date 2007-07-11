@@ -1,0 +1,13 @@
+!Delete Resource
+
+{{{
+<resource>
+  <delete url="/foo/bar.html?yanel.resource.usecase=delete" method="GET"/>
+}}}
+
+or
+
+{{{
+<resource>
+  <delete url="/foo/bar.html" method="DELETE"/>
+}}}
