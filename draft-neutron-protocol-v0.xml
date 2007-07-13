@@ -257,7 +257,7 @@
     </section>
 
     <section title="Creating Resources">
-      <t>TBD</t>
+      <t>In order to create a resource the server needs to provide a resource navigation, e.g. a sitetree</t>
       <section title="Introspection Example">
         <figure>
           <artwork>
@@ -269,6 +269,9 @@
     &lt;--
     &lt;sitetree href="/" method="PROPFIND"/>
     -->
+    &lt;--
+    &lt;topicmap href="topicmap.xtm" method="GET"/>
+    -->
   &lt;/navigation>
 &lt;/introspection>
           </artwork>
@@ -276,6 +279,7 @@
       </section>
 
       <section title="Response">
+<t>Also see <eref target="http://www.webdav.org/specs/rfc2518.html">http://www.webdav.org/specs/rfc2518.html</eref></t>
 <figure>
 <artwork>
 &lt;multistatus xmlns="DAV:">
