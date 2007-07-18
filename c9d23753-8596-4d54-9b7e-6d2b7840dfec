@@ -3,7 +3,15 @@
 {{{
 <resource>
   <styles>
-    <style href="/foo/bar.xsl">
+    <style mime-type="application/xslt+xml" href="/foo/bar.xsl">
       <parameter name="color" value="green"/>
     </style>
+}}}
+
+or
+
+{{{
+<resource>
+  <styles>
+    <style mime-type="text/css" href="/foo/bar.css"/>
 }}}
