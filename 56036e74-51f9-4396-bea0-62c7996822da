@@ -1,0 +1,20 @@
+!Locked Resource Exception
+
+Server Response Status: 409 (Conflict)
+
+Server Response Body:
+{{{
+<?xml version="1.0"?>
+
+<exception xmlns="http://www.wyona.org/neutron/1.0" type="locked-resource">
+ <message>Resource is already checked out by another user: lenya!</message>
+ <locked-resource>
+   <!--
+      - user info, e.g. how to contact this user
+      - checkout time
+      - URL to break the lock
+      - ...
+   -->
+ </locked-resource>
+</exception>
+}}}

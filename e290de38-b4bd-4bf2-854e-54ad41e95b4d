@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<introspection xmlns="http://www.wyona.org/neutron/2.0">
+
+  <resource name="Locked Resource Exception">
+  <edit mime-type="text/plain">
+    <checkout url="locked-resource-exception.html?yanel.resource.viewid=txt&amp;yanel.resource.usecase=checkout" method="GET"/>
+    <checkin  url="locked-resource-exception.html?yanel.resource.usecase=checkin" method="PUT"/>
+  </edit>
+  </resource>
+</introspection>
